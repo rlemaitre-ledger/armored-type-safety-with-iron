@@ -5,7 +5,8 @@ options := "defaults.yaml"
 target := "website"
 theme := "theme.css"
 template := "template.html"
-pandoc_dir := "~/.local/share/pandoc"
+home_dir := env_var('HOME')
+pandoc_dir := join(home_dir, ".local/share/pandoc")
 release_url := "https://github.com/pandoc/lua-filters/releases/latest"
 
 # Construct slide from markdown
