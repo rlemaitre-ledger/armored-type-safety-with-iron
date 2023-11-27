@@ -6,16 +6,36 @@
 ```bash
 git clone git@github.com:rlemaitre-ledger/armored-type-safety-with-iron.git
 ```
-2. Install pandoc
+2. Install dependencies
 ```bash
 asdf plugin add pandoc https://github.com/Fbrisset/asdf-pandoc.git
-asdf pandoc install latest
+asdf install
 ```
-ro
+or
 ```bash
-brew install pandoc
+brew install pandoc just
 ```
-3. Run
+You will also need `fswatch` that is not (yet) managed by `asdf`.
+
+On Mac:
 ```bash
-pandoc -t revealjs -s -o index.html slides.md -V revealjs-url=https://unpkg.com/reveal.js/ --include-in-header=slides.css -V theme=black
+brew install fswatch
 ```
+On ubuntu:
+```bash
+apt-get install fswatch
+```
+3. Before the first build
+```bash
+just install
+```
+4. Run
+```bash
+just build
+```
+To build at each changes on this directory:
+```bash
+just watch
+```
+
+The slides will be in the target directory (`website` by default)

@@ -1,4 +1,5 @@
-name: Simple Usage
+---
+name: Publish
 
 on:
   push:
@@ -13,24 +14,14 @@ jobs:
       contents: write
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}
-    defaults:
-      run:
-        working-directory: website
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+      - name: "Build"
+        uses: ./.github/workflows/build.yaml
 
-      - name: Copy assets
-        run: |
-          mkdir -p website
-          cp -r fonts website/
-          cp -r images website/
-          cp theme.css website/
-
-      - name: Build page
-        uses: docker://pandoc/core:2.9
+      - name: Download artifact
+        uses: actions/download-artifact@v3
         with:
-          args: "--defaults defaults.yaml --output website/index.html slides.md"
+          name: website
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
