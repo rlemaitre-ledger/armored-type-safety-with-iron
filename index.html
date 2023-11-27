@@ -37,13 +37,9 @@
   <p class="date">November 28th, 2023</p>
 </section>
 
-<section>
-<section id="who-are-we" class="title-slide slide level1">
+<section id="who-are-we" class="slide level1">
 <h1>Who are we?</h1>
-
-</section>
-<section id="section" class="slide level2">
-<h2></h2>
+<h2 id="section"></h2>
 <div class="columns">
 <div class="column">
 <figure>
@@ -69,14 +65,10 @@ alt="Raphaël Lemaitre" />
 <p><img data-src="images/ledger-logo.svg" class="ledger" /></p>
 </div>
 </div>
-</section></section>
-<section>
-<section id="rationale" class="title-slide slide level1">
-<h1>Rationale</h1>
-
 </section>
-<section id="section-1" class="slide level2">
-<h2></h2>
+<section id="rationale" class="slide level1">
+<h1>Rationale</h1>
+<h2 id="section-1"></h2>
 <p>Suppose you find this code in your codebase</p>
 <pre ><code class="scala">case class IBAN(
   countryCode: String,
@@ -86,30 +78,20 @@ alt="Raphaël Lemaitre" />
   accountNumber: String,
   nationalCheckDigit: String
 )</code></pre>
-</section>
-<section id="section-2" class="slide level2">
-<h2></h2>
+<h2 id="section-2"></h2>
 <p>This looks good</p>
 <pre ><code class="scala">val iban = IBAN("FR", "14", "20041", "01005", "0500013M026", "06")</code></pre>
-<div class="fragment">
+<p>. . .</p>
 <p>Until you find something like this</p>
 <pre ><code class="scala">val shuffled = IBAN("0500013M026", "FR", "06", "14", "20041", "01005")</code></pre>
-</div>
-<div class="fragment">
+<p>. . .</p>
 <p>Then, you even try</p>
 <pre ><code class="scala">val wtf = IBAN("🇫🇷", "✅", "🏦", "🌳", "🧾", "👍")</code></pre>
-</div>
-</section></section>
-<section>
-<section id="how-can-we-do-better" class="title-slide slide level1">
+</section>
+<section id="how-can-we-do-better" class="slide level1">
 <h1>How can we do better?</h1>
-
-</section>
-<section id="maybe-with-type-aliases" class="slide level2">
-<h2>Maybe with Type aliases?</h2>
-</section>
-<section id="section-3" class="slide level2">
-<h2></h2>
+<h2 id="maybe-with-type-aliases">Maybe with Type aliases?</h2>
+<h2 id="section-3"></h2>
 <pre ><code class="scala">type CountryCode = String
 type CheckDigits = String
 type BankCode = String
@@ -125,9 +107,7 @@ case class IBAN(
   accountNumber: AccountNumber,
   nationalCheckDigit: NationalCheckDigit
 )</code></pre>
-</section>
-<section id="section-4" class="slide level2">
-<h2></h2>
+<h2 id="section-4"></h2>
 <div class="columns">
 <div class="column" style="width:&quot;50%;">
 <h3 id="pros">👍 Pros</h3>
@@ -142,12 +122,8 @@ case class IBAN(
 </ul>
 </div>
 </div>
-</section>
-<section id="so-maybe-with-value-classes" class="slide level2">
-<h2>So, maybe with value classes?</h2>
-</section>
-<section id="section-5" class="slide level2">
-<h2></h2>
+<h2 id="so-maybe-with-value-classes">So, maybe with value classes?</h2>
+<h2 id="section-5"></h2>
 <pre ><code class="scala">case class CountryCode(value: String) extends AnyVal
 
 case class CheckDigits(value: String) extends AnyVal
@@ -159,9 +135,7 @@ case class BranchCode(value: String) extends AnyVal
 case class AccountNumber(value: String) extends AnyVal
 
 case class NationalCheckDigit(value: String) extends AnyVal</code></pre>
-</section>
-<section id="section-6" class="slide level2">
-<h2></h2>
+<h2 id="section-6"></h2>
 <p>This looks good</p>
 <pre ><code class="scala">val iban = IBAN(
   CountryCode("FR"),
@@ -180,17 +154,11 @@ case class NationalCheckDigit(value: String) extends AnyVal</code></pre>
   BankCode("20041"),
   BranchCode("01005")
 )</code></pre>
-</section>
-<section id="section-7" class="slide level2">
-<h2></h2>
+<h2 id="section-7"></h2>
 <p>But this one still compiles</p>
 <pre ><code class="scala">val wtf = IBAN("🇫🇷", "✅", "🏦", "🌳", "🧾", "👍")</code></pre>
-</section>
-<section id="lets-add-validation" class="slide level2">
-<h2>Let’s add validation</h2>
-</section>
-<section id="section-8" class="slide level2">
-<h2></h2>
+<h2 id="lets-add-validation">Let’s add validation</h2>
+<h2 id="section-8"></h2>
 <pre ><code class="scala">case class CountryCode(value: String) extends AnyVal:
   require(value.length == 2, "Country code must be 2 characters")
 
@@ -209,17 +177,11 @@ case class AccountNumber(value: String) extends AnyVal:
 case class NationalCheckDigit(value: String) extends AnyVal:
   require(value.length == 2, "National check digit must be 2 characters")
 </code></pre>
-</section>
-<section id="feedback-loop" class="slide level2"
-data-auto-animate="true" data-auto-animate-easing="ease-in-out">
-<h2 data-auto-animate="true"
-data-auto-animate-easing="ease-in-out">Feedback loop</h2>
+<h2 data-auto-animate="true" data-auto-animate-easing="ease-in-out"
+id="feedback-loop">Feedback loop</h2>
 <p>How much time do we need to find a bug?</p>
-</section>
-<section id="feedback-loop-1" class="slide level2"
-data-auto-animate="true" data-auto-animate-easing="ease-in-out">
-<h2 data-auto-animate="true"
-data-auto-animate-easing="ease-in-out">Feedback loop</h2>
+<h2 data-auto-animate="true" data-auto-animate-easing="ease-in-out"
+id="feedback-loop-1">Feedback loop</h2>
 <div class="r-stack">
 <div class="circle" data-id="box1"
 style="background: #ca3c66; width: 700px; height: 700px;">
@@ -227,11 +189,8 @@ style="background: #ca3c66; width: 700px; height: 700px;">
 </div>
 </div>
 <p>In production</p>
-</section>
-<section id="feedback-loop-2" class="slide level2"
-data-auto-animate="true" data-auto-animate-easing="ease-in-out">
-<h2 data-auto-animate="true"
-data-auto-animate-easing="ease-in-out">Feedback loop</h2>
+<h2 data-auto-animate="true" data-auto-animate-easing="ease-in-out"
+id="feedback-loop-2">Feedback loop</h2>
 <div class="r-stack">
 <div class="circle" data-id="box1"
 style="background: #ca3c66; width: 700px; height: 700px;">
@@ -243,11 +202,8 @@ style="background: #db6a8f; width: 600px; height: 600px;">
 </div>
 </div>
 <p>In staging</p>
-</section>
-<section id="feedback-loop-3" class="slide level2"
-data-auto-animate="true" data-auto-animate-easing="ease-in-out">
-<h2 data-auto-animate="true"
-data-auto-animate-easing="ease-in-out">Feedback loop</h2>
+<h2 data-auto-animate="true" data-auto-animate-easing="ease-in-out"
+id="feedback-loop-3">Feedback loop</h2>
 <div class="r-stack">
 <div class="circle" data-id="box1"
 style="background: #ca3c66; width: 700px; height: 700px;">
@@ -263,11 +219,8 @@ style="background: #e8aabe; width: 400px; height: 400px;">
 </div>
 </div>
 <p>Integration tests</p>
-</section>
-<section id="feedback-loop-4" class="slide level2"
-data-auto-animate="true" data-auto-animate-easing="ease-in-out">
-<h2 data-auto-animate="true"
-data-auto-animate-easing="ease-in-out">Feedback loop</h2>
+<h2 data-auto-animate="true" data-auto-animate-easing="ease-in-out"
+id="feedback-loop-4">Feedback loop</h2>
 <div class="r-stack">
 <div class="circle" data-id="box1"
 style="background: #ca3c66; width: 700px; height: 700px;">
@@ -287,11 +240,8 @@ style="background: #a7e0e0; width: 200px; height: 200px;">
 </div>
 </div>
 <p>Unit tests</p>
-</section>
-<section id="feedback-loop-5" class="slide level2"
-data-auto-animate="true" data-auto-animate-easing="ease-in-out">
-<h2 data-auto-animate="true"
-data-auto-animate-easing="ease-in-out">Feedback loop</h2>
+<h2 data-auto-animate="true" data-auto-animate-easing="ease-in-out"
+id="feedback-loop-5">Feedback loop</h2>
 <div class="r-stack">
 <div class="circle" data-id="box1"
 style="background: #ca3c66; width: 700px; height: 700px;">
@@ -315,91 +265,65 @@ style="background: #4aa3a2; width: 100px; height: 100px;">
 </div>
 </div>
 <p>Compilation time</p>
-</section></section>
+</section>
 <section id="something-smarter-and-with-less-boilerplate"
-class="title-slide slide level1">
+class="slide level1">
 <h1>Something smarter and with less boilerplate?</h1>
-
 </section>
-
-<section>
-<section id="meet-iron" class="title-slide slide level1">
+<section id="meet-iron" class="slide level1">
 <h1>Meet Iron</h1>
-
-</section>
-<section id="what-is-iron" class="slide level2">
-<h2>What is Iron?</h2>
+<h2 id="what-is-iron">What is Iron?</h2>
 <p>Type constraint library in Scala 3 <span
 class="devicon-scala-plain colored"></span> created by Raphaël
 Fromentin.</p>
 <p>It enables binding constraints to a specific type.</p>
-</section>
-<section id="what-is-a-constraint" class="slide level2">
-<h2>What is a constraint?</h2>
-</section>
-<section id="constrained-types" class="slide level2">
-<h2>Constrained types</h2>
-</section>
-<section id="composition" class="slide level2">
-<h2>Composition</h2>
-</section>
-<section id="validation" class="slide level2">
-<h2>Validation</h2>
-</section>
-<section id="constrained-opaque-types" class="slide level2">
-<h2>Constrained Opaque Types</h2>
+<h2 id="what-is-a-constraint">What is a constraint?</h2>
+<h2 id="constrained-types">Constrained types</h2>
+<h2 id="composition">Composition</h2>
+<h2 id="validation">Validation</h2>
+<h2 id="constrained-opaque-types">Constrained Opaque Types</h2>
 <p>No implementation leak</p>
+<h2 id="before-after">Before / After</h2>
 </section>
-<section id="before-after" class="slide level2">
-<h2>Before / After</h2>
-</section></section>
-<section>
-<section id="iron-ecosystem" class="title-slide slide level1">
+<section id="iron-ecosystem" class="slide level1">
 <h1>Iron <img data-src="images/scalalove-logo.svg" class="logo" />
 Ecosystem</h1>
-
-</section>
-<section id="runtime" class="slide level2">
-<h2>Runtime</h2>
+<h2 id="runtime">Runtime</h2>
 <ul>
 <li>Cats</li>
 <li>ZIO</li>
 </ul>
-</section>
-<section id="api" class="slide level2">
-<h2>API</h2>
+<h2 id="api">API</h2>
 <ul>
 <li>Tapir</li>
 <li>Circe</li>
 <li>Jsoniter</li>
 <li>ZIO Json</li>
 </ul>
-</section>
-<section id="databases" class="slide level2">
-<h2>Databases</h2>
+<h2 id="databases">Databases</h2>
 <ul>
 <li>doobie</li>
 <li>skunk</li>
 </ul>
-</section>
-<section id="configuration" class="slide level2">
-<h2>Configuration</h2>
+<h2 id="configuration">Configuration</h2>
 <ul>
 <li>Ciris</li>
 </ul>
-</section>
-<section id="tests" class="slide level2">
-<h2>Tests</h2>
+<h2 id="tests">Tests</h2>
 <p>Scalacheck</p>
-</section></section>
-<section id="takeways" class="title-slide slide level1">
-<h1>Takeways</h1>
-
 </section>
-
-<section id="thank-you" class="title-slide slide level1">
-<h1>Thank you</h1>
-
+<section id="takeaways" class="slide level1">
+<h1>Takeaways</h1>
+</section>
+<section id="thank-you" class="slide level1">
+<h1>Thank you!</h1>
+<figure>
+<img data-src="images/slides-url.svg"
+alt="slides available at https://iron.rlemaitre.com/" />
+<figcaption aria-hidden="true"><a
+href="https://iron.rlemaitre.com/">slides available at
+https://iron.rlemaitre.com/</a></figcaption>
+</figure>
 </section>
     </div>
   </div>
