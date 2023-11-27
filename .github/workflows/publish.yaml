@@ -1,0 +1,40 @@
+name: Simple Usage
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-22.04
+    permissions:
+      contents: write
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
+    defaults:
+      run:
+        working-directory: website
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Copy assets
+        run: |
+          mkdir -p website
+          cp -r fonts website/
+          cp -r images website/
+          cp theme.css website/
+
+      - name: Build page
+        uses: docker://pandoc/core:2.9
+        with:
+          args: "--defaults defaults.yaml --output website/index.html slides.md"
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        if: github.ref == 'refs/heads/main'
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./website

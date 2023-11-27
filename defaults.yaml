@@ -1,0 +1,13 @@
+reader: markdown
+writer: revealjs
+standalone: true
+toc: false
+filters:
+  - revealjs-codeblock.lua
+template: template.html
+variables:
+  width: 1920
+  height: 1080
+  highlightjs: true
+  highlightjs-theme: zenburn
+  navigationMode: linear
