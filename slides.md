@@ -312,6 +312,10 @@ No implementation leak
 
 Scalacheck
 
-# Takeways
+# Takeaways
 
-# Thank you
+
+# Thank you!
+
+![[slides available at https://iron.rlemaitre.com/](https://iron.rlemaitre.com/)](images/slides-url.svg)
+

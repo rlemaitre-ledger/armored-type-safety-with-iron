@@ -62,6 +62,7 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./website
+          cname: iron.rlemaitre.com
 
       - name: Publish latest
         uses: marvinpinto/action-automatic-releases@v1.2.1
