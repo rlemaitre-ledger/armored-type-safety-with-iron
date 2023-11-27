@@ -303,3 +303,5 @@ Scalacheck
 # Takeaways
 
 # Thank you!
+
+![Slides available on https://iron.rlemaitre.com](images/slides-url.svg){.r-stretch}
