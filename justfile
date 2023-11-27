@@ -20,9 +20,12 @@ build:
 watch:
   fswatch --one-per-batch --recursive --latency 5 . | xargs -n1 -I {} just build
 
+install_filters:
+  curl -LSs {{release_url}}/download/lua-filters.tar.gz | tar --strip-components=1 --one-top-level={{pandoc_dir}} -zvxf -
+
 install:
   asdf install
-  curl -LSs {{release_url}}/download/lua-filters.tar.gz | tar --strip-components=1 --one-top-level={{pandoc_dir}} -zvxf -
+  just install_filters
 
 clean:
   rm -fr website
