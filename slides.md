@@ -7,7 +7,6 @@ date: November 28th, 2023
 # Who are we?
 
 ## 
-
 :::::: columns
 ::: column
 ![Valentin Bergeron](images/vbergeron.png){.img_right .portrait}
@@ -16,7 +15,6 @@ date: November 28th, 2023
 - Backend Blockchain
 
 ![](images/ledger-logo.svg){.ledger}
-  
 :::
 ::: column
 ![Raphaël Lemaitre](images/rlemaitre.jpeg){.img_right .portrait}
@@ -25,16 +23,12 @@ date: November 28th, 2023
 - Backend Blockchain
 
 ![](images/ledger-logo.svg){.ledger}
-  
 :::
 ::::::
 
 # Rationale
-
 ##
-
 Suppose you find this code in your codebase
-
 ```scala
 case class IBAN(
   countryCode: String,
@@ -45,11 +39,8 @@ case class IBAN(
   nationalCheckDigit: String
 )
 ```
-
-##
-
+## 
 This looks good
-
 ```scala
 val iban = IBAN("FR", "14", "20041", "01005", "0500013M026", "06")
 ```
@@ -97,19 +88,18 @@ case class IBAN(
 ##
 
 :::::::::::::: {.columns}
-::: {.column width="50%}
+::: {.column width=50%}
 ### 👍 Pros
 
 - Legibility
 :::
-::: {.column width="50%}
+::: {.column width=50%}
 ### 👎 Cons
 
 - Substitutions are possible
 - No validation
 :::
 ::::::::::::::
-
 
 ## So, maybe with value classes?
 
@@ -162,7 +152,7 @@ val shuffled = IBAN(
 But this one still compiles
 
 ```scala
-val wtf = IBAN("🇫🇷", "✅", "🏦", "🌳", "🧾", "👍")
+val wtf = IBAN("🇫🇷", "✅", "🏦", "🌳", "🧾", "🤡")
 ```
 
 ## Let's add validation
@@ -227,7 +217,6 @@ In staging
 
 Integration tests
 
-
 ## Feedback loop {auto-animate=true auto-animate-easing=ease-in-out}
 
 :::: {.r-stack}
@@ -269,7 +258,6 @@ Compilation time
 Type constraint library in Scala 3 []{.devicon-scala-plain .colored} created by Raphaël Fromentin.
 
 It enables binding constraints to a specific type.
-
 
 ## What is a constraint?
 
@@ -314,8 +302,4 @@ Scalacheck
 
 # Takeaways
 
-
 # Thank you!
-
-![[slides available at https://iron.rlemaitre.com/](https://iron.rlemaitre.com/)](images/slides-url.svg)
-
