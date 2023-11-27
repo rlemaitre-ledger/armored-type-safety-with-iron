@@ -269,4 +269,57 @@ Compilation time
 
 How much time do we need to find a bug?
 
+# Something smarter and with less boilerplate?
+
 # Meet Iron
+
+## What is Iron?
+
+Type constraint library in Scala 3
+
+Created by Raphaël Fromentin
+
+## What is a constraint?
+
+## Constrained types
+
+## Composition
+
+## Validation
+
+## Constrained Opaque Types
+
+No implementation leak
+
+## Before / After
+
+# Iron ❤️ Ecosystem
+
+## Runtime
+
+- Cats
+- ZIO
+
+## API
+
+- Tapir
+- Circe
+- Jsoniter
+- ZIO Json
+
+## Databases
+
+- doobie
+- skunk
+
+## Configuration
+
+- Ciris
+
+## Tests
+
+Scalacheck
+
+# Takeways
+
+# Thank you
