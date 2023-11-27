@@ -31,7 +31,7 @@ date: November 28th, 2023
 
 # Rationale
 
-## 
+##
 
 Suppose you find this code in your codebase
 
@@ -67,7 +67,7 @@ val shuffled = IBAN("0500013M026", "FR", "06", "14", "20041", "01005")
 Then, you even try
 
 ```scala
-val wtf = IBAN("🇫🇷", "✅", "🏦", "🌳", "🧾", "👍")
+val wtf = IBAN("🇫🇷", "✅", "🏦", "🌳", "🧾", "🤡")
 ```
 
 # How can we do better?
@@ -94,7 +94,7 @@ case class IBAN(
 )
 ```
 
-## 
+##
 
 :::::::::::::: {.columns}
 ::: {.column width="50%}
