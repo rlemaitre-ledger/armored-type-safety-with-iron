@@ -7,14 +7,38 @@ on:
       - "v*"
 
 jobs:
-  tagged-release:
-    name: "Tagged Release"
-    runs-on: "ubuntu-latest"
-
+  build:
+    runs-on: ubuntu-22.04
+    permissions:
+      contents: write
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
     steps:
-      - name: "Build"
-        uses: ./.github/workflows/build.yaml
+      - name: Checkout
+        uses: actions/checkout@v4.1.1
+            
+      - name: Copy assets
+        run: |
+          mkdir -p website
+          cp -r fonts website/
+          cp -r images website/
+          cp theme.css website/
 
+      - name: Build page
+        uses: docker://pandoc/core:2.9
+        with:
+          args: "--defaults defaults.yaml --output website/index.html slides.md"
+
+      - name: Publish artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: website
+          path: ./website
+  tagged-release:
+    name: "Public Release"
+    runs-on: ubuntu-22.04
+    needs: build
+    steps:
       - uses: "marvinpinto/action-automatic-releases@1.2.1"
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
