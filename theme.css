@@ -501,6 +501,12 @@ img.logo {
   vertical-align: middle;
 }
 
+img.qrcode {
+  width: 512px;
+  height: auto;
+  vertical-align: middle;
+}
+
 .fragment.blur {
   filter: blur(5px);
 }
