@@ -43,6 +43,7 @@ jobs:
         with:
           name: website
           path: ./website
+          if-no-files-found: error
   deploy:
     needs: build
     runs-on: ubuntu-22.04
@@ -53,25 +54,21 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: website
+          path: ./website
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         if: github.ref == 'refs/heads/main'
-        permissions:
-          contents: write
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./website
 
       - name: Publish latest
-        uses: "marvinpinto/action-automatic-releases@v1.2.1"
-        secrets: inherit
-        permissions:
-          contents: write
+        uses: marvinpinto/action-automatic-releases@v1.2.1
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           automatic_release_tag: "latest"
           prerelease: true
           title: "Development Build"
           files: |
-            website
+            ./website/*
