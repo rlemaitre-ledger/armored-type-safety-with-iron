@@ -3,6 +3,7 @@ name: Build
 
 on:
   workflow_call:
+  workflow_dispatch:
 
 jobs:
   build:
@@ -11,13 +12,10 @@ jobs:
       contents: write
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}
-    defaults:
-      run:
-        working-directory: website
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
-
+        uses: actions/checkout@v4.1.1
+            
       - name: Copy assets
         run: |
           mkdir -p website
