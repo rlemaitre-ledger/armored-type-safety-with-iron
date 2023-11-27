@@ -203,8 +203,6 @@ How much time do we need to find a bug?
 
 In production
 
-How much time do we need to find a bug?
-
 ## Feedback loop {auto-animate=true auto-animate-easing=ease-in-out}
 
 :::: {.r-stack}
@@ -216,8 +214,6 @@ How much time do we need to find a bug?
 
 In staging
 
-How much time do we need to find a bug?
-
 ## Feedback loop {auto-animate=true auto-animate-easing=ease-in-out}
 
 :::: {.r-stack}
@@ -225,13 +221,12 @@ How much time do we need to find a bug?
 :::
 ::: {data-id="box2" .circle style="background: #db6a8f; width: 600px; height: 600px;"}
 :::
-::: {data-id="box3" .circle style="background: #e8aabe; width: 500px; height: 500px;"}
+::: {data-id="box3" .circle style="background: #e8aabe; width: 400px; height: 400px;"}
 :::
 ::::
 
 Integration tests
 
-How much time do we need to find a bug?
 
 ## Feedback loop {auto-animate=true auto-animate-easing=ease-in-out}
 
@@ -240,16 +235,14 @@ How much time do we need to find a bug?
 :::
 ::: {data-id="box2" .circle style="background: #db6a8f; width: 600px; height: 600px;"}
 :::
-::: {data-id="box3" .circle style="background: #e8aabe; width: 500px; height: 500px;"}
+::: {data-id="box3" .circle style="background: #e8aabe; width: 400px; height: 400px;"}
 :::
-::: {data-id="box4" .circle style="background: #a7e0e0; width: 400px; height: 400px;"}
+::: {data-id="box4" .circle style="background: #a7e0e0; width: 200px; height: 200px;"}
 :::
 ::::
 
 Unit tests
 
-How much time do we need to find a bug?
-
 ## Feedback loop {auto-animate=true auto-animate-easing=ease-in-out}
 
 :::: {.r-stack}
@@ -257,17 +250,15 @@ How much time do we need to find a bug?
 :::
 ::: {data-id="box2" .circle style="background: #db6a8f; width: 600px; height: 600px;"}
 :::
-::: {data-id="box3" .circle style="background: #e8aabe; width: 500px; height: 500px;"}
+::: {data-id="box3" .circle style="background: #e8aabe; width: 400px; height: 400px;"}
 :::
-::: {data-id="box4" .circle style="background: #a7e0e0; width: 400px; height: 400px;"}
+::: {data-id="box4" .circle style="background: #a7e0e0; width: 200px; height: 200px;"}
 :::
-::: {data-id="box5" .circle style="background: #4aa3a2; width: 300px; height: 300px;"}
+::: {data-id="box5" .circle style="background: #4aa3a2; width: 100px; height: 100px;"}
 :::
 ::::
 
 Compilation time
-
-How much time do we need to find a bug?
 
 # Something smarter and with less boilerplate?
 
@@ -275,9 +266,10 @@ How much time do we need to find a bug?
 
 ## What is Iron?
 
-Type constraint library in Scala 3
+Type constraint library in Scala 3 []{.devicon-scala-plain .colored} created by Raphaël Fromentin.
 
-Created by Raphaël Fromentin
+It enables binding constraints to a specific type.
+
 
 ## What is a constraint?
 
@@ -293,7 +285,7 @@ No implementation leak
 
 ## Before / After
 
-# Iron ❤️ Ecosystem
+# Iron ![](images/scalalove-logo.svg){.logo} Ecosystem
 
 ## Runtime
 

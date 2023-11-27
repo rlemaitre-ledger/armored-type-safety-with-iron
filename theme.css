@@ -1,5 +1,7 @@
 @import url(./fonts/inter/Inter.css);
 @import url(./fonts/fira_code/fira_code.css);
+@import url(./fonts/devicon/devicon-base.css);
+@import url(./fonts/devicon/devicon.min.css);
 
 section.has-light-background,
 section.has-light-background h1,
@@ -490,6 +492,12 @@ img.portrait+figcaption {
 img.ledger {
   width: 200px;
   height: auto;
+}
+
+img.logo {
+  width: 256px;
+  height: auto;
+  vertical-align: middle;
 }
 
 .fragment.blur {
