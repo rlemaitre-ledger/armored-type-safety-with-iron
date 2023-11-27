@@ -1,6 +1,8 @@
 # Armored Type Safety With Iron
 
-This is the repository containing the slides for the **Armored Type Safety with Iron** @vbergeron-ledger and @rlemaitre-ledger gave at [Scala Matters](https://www.scalamatters.io/) in Paris, on November 28th, 2023.
+This is the repository containing the slides for the **Armored Type Safety with Iron** 
+[@vbergeron-ledger](https://github.com/vbergeron-ledger) and [@rlemaitre-ledger](https://github.com/rlemaitre-ledger)
+gave at [Scala Matters](https://www.scalamatters.io/) in Paris, on November 28th, 2023.
 
 The slides are available at [https://iron.rlemaitre.com/](https://iron.rlemaitre.com/).
 

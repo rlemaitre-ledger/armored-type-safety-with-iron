@@ -6,7 +6,8 @@ date: November 28th, 2023
 
 # Who are we?
 
-## 
+##
+
 :::::: columns
 ::: column
 ![Valentin Bergeron](images/vbergeron.png){.img_right .portrait}
@@ -27,7 +28,9 @@ date: November 28th, 2023
 ::::::
 
 # Rationale
+
 ##
+
 Suppose you find this code in your codebase
 ```scala
 case class IBAN(
@@ -39,8 +42,11 @@ case class IBAN(
   nationalCheckDigit: String
 )
 ```
-## 
+
+##
+
 This looks good
+
 ```scala
 val iban = IBAN("FR", "14", "20041", "01005", "0500013M026", "06")
 ```
@@ -65,7 +71,7 @@ val wtf = IBAN("🇫🇷", "✅", "🏦", "🌳", "🧾", "🤡")
 
 ## Maybe with Type aliases?
 
-##
+---
 
 ```scala
 type CountryCode = String
@@ -85,7 +91,7 @@ case class IBAN(
 )
 ```
 
-##
+---
 
 :::::::::::::: {.columns}
 ::: {.column width=50%}
@@ -103,7 +109,7 @@ case class IBAN(
 
 ## So, maybe with value classes?
 
-##
+---
 
 ```scala
 case class CountryCode(value: String) extends AnyVal
@@ -119,7 +125,7 @@ case class AccountNumber(value: String) extends AnyVal
 case class NationalCheckDigit(value: String) extends AnyVal
 ```
 
-##
+---
 
 This looks good
 
@@ -147,7 +153,7 @@ val shuffled = IBAN(
 )
 ```
 
-##
+---
 
 But this one still compiles
 
@@ -157,7 +163,7 @@ val wtf = IBAN("🇫🇷", "✅", "🏦", "🌳", "🧾", "🤡")
 
 ## Let's add validation
 
-##
+---
 
 ```scala
 case class CountryCode(value: String) extends AnyVal:
@@ -179,6 +185,7 @@ case class NationalCheckDigit(value: String) extends AnyVal:
   require(value.length == 2, "National check digit must be 2 characters")
 
 ```
+
 
 ## Feedback loop {auto-animate=true auto-animate-easing=ease-in-out}
 

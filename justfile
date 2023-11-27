@@ -16,9 +16,20 @@ build:
   rsync --archive --verbose --checksum images {{target}}/
   rsync --archive --verbose --checksum theme.css {{target}}/
   pandoc \
-    --defaults {{options}} \
-    --output {{target}}/{{output}} \
-    {{input}}
+    --from=markdown \
+    --to=revealjs \
+    --standalone \
+    --slide-level=2 \
+    --lua-filter={{pandoc_dir}}/filters/revealjs-codeblock.lua \
+    --template=template.html \
+    --variable=width:1920 \
+    --variable=height:1080 \
+    --variable=highlightjs:true \
+    --variable=highlightjs-theme:zenburn \
+    --variable=navigationMode:linear \
+    --slide-level=2 \
+    --output={{target}}/{{output}} \
+      {{input}}
 
 watch:
   fswatch -0 --one-per-batch --recursive --latency 5 {{input}} {{options}} {{theme}} {{template}} justfile fonts images | xargs -0 -I {} just build
