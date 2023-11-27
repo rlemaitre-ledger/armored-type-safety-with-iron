@@ -190,87 +190,83 @@ case class NationalCheckDigit(value: String) extends AnyVal:
 
 ```
 
-## Feedback loop {auto-animate=true}
+## Feedback loop {auto-animate=true auto-animate-easing=ease-in-out}
 
 How much time do we need to find a bug?
 
-## Feedback loop {auto-animate=true}
+## Feedback loop {auto-animate=true auto-animate-easing=ease-in-out}
 
-:::: {.h-stack}
+:::: {.r-stack}
 ::: {data-id="box1" .circle style="background: #ca3c66; width: 700px; height: 700px;"}
-In production
 :::
 ::::
 
+In production
+
 How much time do we need to find a bug?
 
-## Feedback loop {auto-animate=true}
+## Feedback loop {auto-animate=true auto-animate-easing=ease-in-out}
 
-:::: {.h-stack}
+:::: {.r-stack}
 ::: {data-id="box1" .circle style="background: #ca3c66; width: 700px; height: 700px;"}
-In production
 :::
 ::: {data-id="box2" .circle style="background: #db6a8f; width: 600px; height: 600px;"}
-In staging
 :::
 ::::
 
+In staging
+
 How much time do we need to find a bug?
 
-## Feedback loop {auto-animate=true}
+## Feedback loop {auto-animate=true auto-animate-easing=ease-in-out}
 
-:::: {.h-stack}
+:::: {.r-stack}
 ::: {data-id="box1" .circle style="background: #ca3c66; width: 700px; height: 700px;"}
-In production
 :::
 ::: {data-id="box2" .circle style="background: #db6a8f; width: 600px; height: 600px;"}
-In staging
 :::
 ::: {data-id="box3" .circle style="background: #e8aabe; width: 500px; height: 500px;"}
-Integration tests
 :::
 ::::
 
+Integration tests
+
 How much time do we need to find a bug?
 
-## Feedback loop {auto-animate=true}
+## Feedback loop {auto-animate=true auto-animate-easing=ease-in-out}
 
-:::: {.h-stack}
+:::: {.r-stack}
 ::: {data-id="box1" .circle style="background: #ca3c66; width: 700px; height: 700px;"}
-In production
 :::
 ::: {data-id="box2" .circle style="background: #db6a8f; width: 600px; height: 600px;"}
-In staging
 :::
 ::: {data-id="box3" .circle style="background: #e8aabe; width: 500px; height: 500px;"}
-Integration tests
 :::
 ::: {data-id="box4" .circle style="background: #a7e0e0; width: 400px; height: 400px;"}
-Unit tests
 :::
 ::::
 
+Unit tests
+
 How much time do we need to find a bug?
 
-## Feedback loop {auto-animate=true}
+## Feedback loop {auto-animate=true auto-animate-easing=ease-in-out}
 
-:::: {.h-stack}
+:::: {.r-stack}
 ::: {data-id="box1" .circle style="background: #ca3c66; width: 700px; height: 700px;"}
-In production
 :::
 ::: {data-id="box2" .circle style="background: #db6a8f; width: 600px; height: 600px;"}
-In staging
 :::
 ::: {data-id="box3" .circle style="background: #e8aabe; width: 500px; height: 500px;"}
-Integration tests
 :::
 ::: {data-id="box4" .circle style="background: #a7e0e0; width: 400px; height: 400px;"}
-Unit tests
 :::
 ::: {data-id="box5" .circle style="background: #4aa3a2; width: 300px; height: 300px;"}
-Compilation time
 :::
 ::::
 
+Compilation time
+
 How much time do we need to find a bug?
 
+# Meet Iron
