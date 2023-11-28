@@ -24,7 +24,7 @@
     .display.math{display: block; text-align: center; margin: 0.5rem auto;}
   </style>
   <link rel="stylesheet" href="https://unpkg.com/reveal.js@^4//dist/theme/black.css" id="theme">
-  <link rel="stylesheet" href="https://unpkg.com/reveal.js@^4//plugin/highlight/zenburn.css">
+  <link rel="stylesheet" href="https://unpkg.com/reveal.js@^4//plugin/highlight/monokai.css">
   <link rel="stylesheet" href="theme.css"/>
 </head>
 <body>
@@ -327,18 +327,103 @@ class="title-slide slide level1">
 <h1>Meet Iron</h1>
 
 </section>
-<section id="what-is-iron" class="slide level2">
-<h2>What is Iron?</h2>
-<p>Type constraint library in Scala 3 <span
-class="devicon-scala-plain colored"></span> created by Raphaël
-Fromentin.</p>
-<p>It enables binding constraints to a specific type.</p>
+<section id="what-is-iron" class="slide level2" data-id="what-title">
+<h2 data-id="what-title">What is Iron?</h2>
+<div data-id="constraint">
+<p>Composable type constraint library</p>
+</div>
+<div data-id="creator">
+<p>Created in Scala 3 <span class="devicon-scala-plain colored"></span>
+by Raphaël Fromentin</p>
+</div>
+<div data-id="binding">
+<p>It enables binding constraints to a specific type</p>
+</div>
 </section>
-<section id="what-is-a-constraint" class="slide level2">
-<h2>What is a constraint?</h2>
+<section id="what-is-iron-1" class="slide level2" data-id="what-title">
+<h2 data-id="what-title"><span class="faded">What is Iron?</span></h2>
+<div data-id="constraint" style="font-size: 150%">
+<p>Composable type <span style="font-size: 200%;">constraint</span>
+library</p>
+<div style="font-size: var(--r-main-font-size);">
+<pre ><code class="scala">final class Positive
+
+import io.github.iltotore.iron.*
+
+given Constraint[Int, Positive] with
+
+  override inline def test(value: Int): Boolean = value &gt; 0
+
+  override inline def message: String = "Should be strictly positive"
+</code></pre>
+</div>
+</div>
+<div class="faded" data-id="creator">
+<p>Created in Scala 3 <span class="devicon-scala-plain colored"></span>
+by Raphaël Fromentin</p>
+</div>
+<div class="faded" data-id="binding">
+<p>It enables binding constraints to a specific type</p>
+</div>
 </section>
-<section id="constrained-types" class="slide level2">
-<h2>Constrained types</h2>
+<section id="what-is-iron-2" class="slide level2" data-id="what-title">
+<h2 data-id="what-title"><span class="faded">What is Iron?</span></h2>
+<div data-id="constraint" style="font-size: 150%">
+<p>Composable <span style="font-size: 200%;">type constraint</span>
+library</p>
+<div style="font-size: var(--r-main-font-size);">
+<pre ><code class="scala" data-line-numbers="11|12--13">final class Positive
+
+import io.github.iltotore.iron.*
+
+given Constraint[Int, Positive] with
+
+  override inline def test(value: Int): Boolean = value &gt; 0
+
+  override inline def message: String = "Should be strictly positive"
+
+val x: Int :| Positive = 1
+//Compile-time error: Should be strictly positive
+val y: Int :| Positive = -1 </code></pre>
+</div>
+</div>
+<div class="faded" data-id="creator">
+<p>Created in Scala 3 <span class="devicon-scala-plain colored"></span>
+by Raphaël Fromentin</p>
+</div>
+<div class="faded" data-id="binding">
+<p>It enables binding constraints to a specific type</p>
+</div>
+</section>
+<section id="what-is-iron-3" class="slide level2" data-id="what-title">
+<h2 data-id="what-title"><span class="faded">What is Iron?</span></h2>
+<div data-id="constraint" style="font-size: 150%">
+<p><span style="font-size: 200%;">Composable type constraint</span>
+library</p>
+<div style="font-size: var(--r-main-font-size);">
+<pre ><code class="scala" data-line-numbers="9-|10-13">final class Positive
+final class Less[V]
+
+// ...
+
+val x: Int :| Positive = 1
+val y: Int :| Positive = -1
+
+val foo: Int :| Positive :| Less[42] = 1
+//Compile-time error: Should be strictly positive
+val bar: Int :| Positive :| Less[42] = -1 
+//Compile-time error: Should be less than 42
+val baz: Int :| Positive :| Less[42] = 100
+</code></pre>
+</div>
+</div>
+<div class="faded" data-id="creator">
+<p>Created in Scala 3 <span class="devicon-scala-plain colored"></span>
+by Raphaël Fromentin</p>
+</div>
+<div class="faded" data-id="binding">
+<p>It enables binding constraints to a specific type</p>
+</div>
 </section>
 <section id="composition" class="slide level2">
 <h2>Composition</h2>
@@ -401,8 +486,8 @@ Ecosystem</h1>
 <h1>Thank you!</h1>
 <figure>
 <img data-src="images/slides-url.svg" class="r-stretch"
-alt="Slides available on https://iron.rlemaitre.com" />
-<figcaption aria-hidden="true">Slides available on
+alt="Slides available at https://iron.rlemaitre.com" />
+<figcaption aria-hidden="true">Slides available at
 https://iron.rlemaitre.com</figcaption>
 </figure>
 </section>

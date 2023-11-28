@@ -540,3 +540,16 @@ img.qrcode {
   height: 0px; */
   visibility: hidden;
 }
+
+.highlight {
+  font-size: 400%;
+  /* color: var(--r-heading-color); */
+}
+
+.faded {
+  font-size: 50%;
+  /* opacity: 0.5; */
+}
+.details {
+  font-size: 100%;
+}
