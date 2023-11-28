@@ -78,7 +78,7 @@ alt="Raphaël Lemaitre" />
 <section id="section-1" class="slide level2" data-auto-animate="">
 <h2 data-auto-animate=""></h2>
 <p>Suppose you find this code in your codebase</p>
-<pre data-id="code-model"><code class="scala" data-line-numbers="">case class IBAN(
+<pre data-id="code"><code class="scala" data-line-numbers="">case class IBAN(
   countryCode: String,
   checkDigits: String,
   bankCode: String,
@@ -90,7 +90,7 @@ alt="Raphaël Lemaitre" />
 <section id="section-2" class="slide level2" data-auto-animate="">
 <h2 data-auto-animate=""></h2>
 <p>This looks good</p>
-<pre data-id="code-model"><code class="scala" data-line-numbers="">val iban = IBAN(
+<pre data-id="code"><code class="scala" data-line-numbers="">val iban = IBAN(
   "FR",
   "14",
   "20041",
@@ -103,7 +103,7 @@ alt="Raphaël Lemaitre" />
 <section id="section-3" class="slide level2" data-auto-animate="">
 <h2 data-auto-animate=""></h2>
 <p>Until you find something like this</p>
-<pre data-id="code-model"><code class="scala" data-line-numbers="">val shuffled = IBAN(
+<pre data-id="code"><code class="scala" data-line-numbers="">val shuffled = IBAN(
   "0500013M026",
   "FR",
   "06",
@@ -116,7 +116,7 @@ alt="Raphaël Lemaitre" />
 <section id="section-4" class="slide level2" data-auto-animate="">
 <h2 data-auto-animate=""></h2>
 <p>Then, you see this</p>
-<pre data-id="code-model"><code class="scala" data-line-numbers="">val wtf = IBAN(
+<pre data-id="code"><code class="scala" data-line-numbers="">val wtf = IBAN(
   "🇫🇷",
   "✅",
   "🏦",
@@ -134,9 +134,9 @@ alt="Raphaël Lemaitre" />
 <section id="maybe-with-type-aliases" class="slide level2">
 <h2>Maybe with Type aliases?</h2>
 </section>
-<section class="slide level2">
-
-<pre ><code class="scala">type CountryCode = String
+<section id="section-5" class="slide level2">
+<h2></h2>
+<pre data-id="code"><code class="scala" data-line-numbers="">type CountryCode = String
 type CheckDigits = String
 type BankCode = String
 type BranchCode = String
@@ -151,28 +151,22 @@ case class IBAN(
   accountNumber: AccountNumber,
   nationalCheckDigit: NationalCheckDigit
 )</code></pre>
-</section>
-<section class="slide level2">
-
-<div class="columns">
-<div class="column" style="width:50%;">
-<h3 id="pros">👍 Pros</h3>
+<aside class="notes">
+<p>Pros</p>
 <ul>
 <li>Legibility</li>
 </ul>
-</div><div class="column" style="width:50%;">
-<h3 id="cons">👎 Cons</h3>
+<p>Cons</p>
 <ul>
 <li>Substitutions are possible</li>
 <li>No validation</li>
 </ul>
-</div>
-</div>
+</aside>
 </section>
 <section id="so-maybe-with-value-classes" class="slide level2">
 <h2>So, maybe with value classes?</h2>
 </section>
-<section id="section-5" class="slide level2">
+<section id="section-6" class="slide level2">
 <h2></h2>
 <pre data-id="code"><code class="scala" data-line-numbers="">case class CountryCode(value: String) extends AnyVal
 
@@ -186,7 +180,7 @@ case class AccountNumber(value: String) extends AnyVal
 
 case class NationalCheckDigit(value: String) extends AnyVal</code></pre>
 </section>
-<section id="section-6" class="slide level2" data-auto-animate="">
+<section id="section-7" class="slide level2" data-auto-animate="">
 <h2 data-auto-animate=""></h2>
 <p>This looks good</p>
 <pre data-id="code"><code class="scala" data-line-numbers="">val iban = IBAN(
@@ -199,7 +193,7 @@ case class NationalCheckDigit(value: String) extends AnyVal</code></pre>
 )</code></pre>
 <p><span style="font-size: 400%;">👍</span></p>
 </section>
-<section id="section-7" class="slide level2" data-auto-animate="">
+<section id="section-8" class="slide level2" data-auto-animate="">
 <h2 data-auto-animate=""></h2>
 <p>And this cannot compile anymore</p>
 <pre data-id="code"><code class="scala" data-line-numbers="">val shuffled = IBAN(
@@ -212,7 +206,7 @@ case class NationalCheckDigit(value: String) extends AnyVal</code></pre>
 )</code></pre>
 <p><span style="font-size: 400%;">👍</span></p>
 </section>
-<section id="section-8" class="slide level2" data-auto-animate="">
+<section id="section-9" class="slide level2" data-auto-animate="">
 <h2 data-auto-animate=""></h2>
 <p>But this one still compiles</p>
 <pre data-id="code"><code class="scala" data-line-numbers="">val wtf = IBAN(
@@ -228,7 +222,7 @@ case class NationalCheckDigit(value: String) extends AnyVal</code></pre>
 <section id="lets-add-validation" class="slide level2">
 <h2>Let’s add validation</h2>
 </section>
-<section id="section-9" class="slide level2">
+<section id="section-10" class="slide level2">
 <h2></h2>
 <pre ><code class="scala">case class CountryCode(value: String) extends AnyVal:
   require(value.length == 2, "Country code must be 2 characters")
@@ -251,12 +245,12 @@ case class NationalCheckDigit(value: String) extends AnyVal:
 <section id="lets-validate-without-crashing" class="slide level2">
 <h2>Let’s validate without crashing</h2>
 </section>
-<section id="section-10" class="slide level2">
+<section id="section-11" class="slide level2">
 <h2></h2>
 <pre ><code class="scala">case class FormatError(reason: String) 
    extends Exception(reason), NoStackTrace</code></pre>
 </section>
-<section id="section-11" class="slide level2">
+<section id="section-12" class="slide level2">
 <h2></h2>
 <pre data-id="either-code"><code class="scala" data-line-numbers="">case class CountryCode(value: String) extends AnyVal
 object CountryCode:
@@ -276,7 +270,7 @@ object BankCode:
     Either.cond(input.length == 5, BankCode(input),
       FormatError("Bank code must be 5 characters"))</code></pre>
 </section>
-<section id="section-12" class="slide level2">
+<section id="section-13" class="slide level2">
 <h2></h2>
 <pre data-id="either-code"><code class="scala" data-line-numbers="3,9,15|4-5,10-11,16-17">case class CountryCode(value: String) extends AnyVal
 object CountryCode:
@@ -296,7 +290,7 @@ object BankCode:
     Either.cond(input.length == 5, BankCode(input),
       FormatError("Bank code must be 5 characters"))</code></pre>
 </section>
-<section id="section-13" class="slide level2">
+<section id="section-14" class="slide level2">
 <h2></h2>
 <pre data-id="either-code"><code class="scala" data-line-numbers="">case class BranchCode(value: String) extends AnyVal
 object BranchCode:
@@ -316,7 +310,7 @@ object NationalCheckDigits:
     Either.cond(input.length == 2, NationalCheckDigits(input), 
       FormatError("Notional check digits must be 2 characters"))</code></pre>
 </section>
-<section id="section-14" class="slide level2">
+<section id="section-15" class="slide level2">
 <h2></h2>
 <pre data-id="either-code"><code class="scala" data-line-numbers="3,9,15|4-5,10-11,16-17">case class BranchCode(value: String) extends AnyVal
 object BranchCode:
@@ -336,7 +330,7 @@ object NationalCheckDigits:
     Either.cond(input.length == 2, NationalCheckDigits(input), 
       FormatError("Notional check digits must be 2 characters"))</code></pre>
 </section>
-<section id="section-15" class="slide level2">
+<section id="section-16" class="slide level2">
 <h2></h2>
 <pre data-id="opaque-types-code"><code class="scala" data-line-numbers="">opaque type BranchCode &lt;: String = String
 object BranchCode:
@@ -353,13 +347,13 @@ object BranchCode:
 <h2>Summary</h2>
 <table>
 <colgroup>
+<col style="width: 23%" />
+<col style="width: 12%" />
+<col style="width: 12%" />
+<col style="width: 9%" />
+<col style="width: 9%" />
 <col style="width: 20%" />
-<col style="width: 13%" />
-<col style="width: 14%" />
-<col style="width: 10%" />
-<col style="width: 8%" />
-<col style="width: 19%" />
-<col style="width: 13%" />
+<col style="width: 12%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -526,14 +520,14 @@ style="background: #4aa3a2; width: 50px; height: 50px;">
 </section>
 <section id="summary-1" class="slide level2">
 <h2>Summary</h2>
-<table style="width:100%;">
+<table>
 <colgroup>
-<col style="width: 17%" />
+<col style="width: 20%" />
 <col style="width: 11%" />
-<col style="width: 12%" />
-<col style="width: 8%" />
+<col style="width: 11%" />
 <col style="width: 7%" />
-<col style="width: 16%" />
+<col style="width: 7%" />
+<col style="width: 17%" />
 <col style="width: 11%" />
 <col style="width: 12%" />
 </colgroup>
@@ -623,10 +617,15 @@ style="background: #4aa3a2; width: 50px; height: 50px;">
 </tbody>
 </table>
 </section></section>
-<section>
 <section id="something-smarter-and-with-less-boilerplate"
 class="title-slide slide level1">
 <h1>Something smarter and with less boilerplate?</h1>
+
+</section>
+
+<section>
+<section id="section-17" class="title-slide slide level1">
+<h1></h1>
 <p><img data-src="images/iron-logo.png" /></p>
 </section>
 <section id="what-is-iron" class="slide level2" data-auto-animate="">
@@ -784,15 +783,35 @@ data-auto-animate="">
 <pre data-id="code"><code class="scala" data-line-numbers="">val value = ???
 val x: Int :| Greater[0] = value.refine</code></pre>
 <aside class="notes">
-<p>Illegal argumet exc</p>
+<p>Imperative</p>
+<p>Illegal argument exception</p>
+</aside>
+</section>
+<section id="what-if-the-value-is-known-at-runtime-1"
+class="slide level2" data-auto-animate="">
+<h2 data-auto-animate="">What if the value is known at runtime?</h2>
+<pre data-id="code"><code class="scala" data-line-numbers="">def createIBAN(  countryCode: String,
+  checkDigits: String,
+  bankCode: String,
+  branchCode: String,
+  accountNumber: String,
+  nationalCheckDigit: String
+): Either[String, User] =
+  for
+    ctr &lt;- countryCode.refineEither[Alphanumeric]
+    chk &lt;- countryCode.refineEither[Alphanumeric]
+    ban &lt;- countryCode.refineEither[Alphanumeric]
+    bra &lt;- countryCode.refineEither[Alphanumeric]
+    acc &lt;- countryCode.refineEither[Alphanumeric]
+    nck &lt;- countryCode.refineEither[Alphanumeric]
+  yield IBAN(ctr, chk, ban, bra, acc, nck)</code></pre>
+<aside class="notes">
+<p>Functional</p>
 </aside>
 </section>
 <section id="constrained-opaque-types" class="slide level2">
 <h2>Constrained Opaque Types</h2>
 <p>No implementation leak</p>
-</section>
-<section id="before-after" class="slide level2">
-<h2>Before / After</h2>
 </section></section>
 <section>
 <section id="iron-ecosystem" class="title-slide slide level1">
@@ -935,7 +954,7 @@ https://iron.rlemaitre.com</figcaption>
         // Push each slide change to the browser history
         history: true,
         // Enable keyboard shortcuts for navigation
-        keyboard: true,
+        keyboard: {13: 'next', 33: 'prev', 34: 'next'},
         // Enable the slide overview mode
         overview: true,
         // Vertical centering of slides
