@@ -817,6 +817,61 @@ Ecosystem</h1>
 <li><em>Ciris</em></li>
 <li><em>Scalacheck</em></li>
 </ul>
+</section>
+<section id="integration-exemples" class="slide level2">
+<h2>Integration Exemples</h2>
+<pre ><code class="scala">final case class Tag(name: Tag.Name, value: Tag.Value)
+
+object Tag:
+
+  private type NameConstraint = Not[Empty] & MaxLength[128]
+  opaque type Name &lt;: String  = String :| NameConstraint
+
+  object Name extends RefinedTypeOps[String, NameConstraint, Name]
+
+  private type ValueConstraint = Not[Empty] & MaxLength[512]
+  opaque type Value &lt;: String  = String :| ValueConstraint
+
+  object Value extends RefinedTypeOps[String, ValueConstraint, Value]</code></pre>
+</section>
+<section id="integration-exemples-tapir" class="slide level2">
+<h2>Integration Exemples : Tapir</h2>
+<pre ><code class="scala">val getLatest = base
+  .name("Get latest account addresses")
+  .in(query[Option[Tag]]("tag"))
+  .get
+  .in("latest")
+  .out(jsonBody[Option[AddressView]])</code></pre>
+</section>
+<section id="integration-exemples-doobie" class="slide level2">
+<h2>Integration Exemples : Doobie</h2>
+<pre ><code class="scala">def getLatestByTag(account: AccountId, name: Tag.Name, value: Tag.Value): ConnectionIO[Option[Position]] =
+  sql"""
+  select
+    account_id,
+    address,
+    coalesce(
+      (select jsonb_object_agg(tag_name, tag_value order by tag_name) 
+       from position_tags pt where p.position_id = pt.position_id),
+      '{}'::jsonb),
+    sync_status
+  from positions p left join position_tags pt using (position_id)
+  where account_id = $account
+    and tag_name   = $name
+    and tag_value  = $value
+  order by position_id desc limit 1
+  """.query[Position].option</code></pre>
+</section>
+<section id="making-an-integration-doobie" class="slide level2">
+<h2>Making an integration : Doobie</h2>
+<pre ><code class="scala">  inline given [A, C]
+    (using inline meta: Meta[A])
+    (using Constraint[A, C], Show[A]): Meta[A :| C] =
+      meta.tiemap[A :| C](_.refineEither)(identity)
+
+  inline given [T]
+    (using m: RefinedTypeOps.Mirror[T], ev: Meta[m.IronType]): Meta[T] =
+      ev.asInstanceOf[Meta[T]]</code></pre>
 </section></section>
 <section id="takeaways" class="title-slide slide level1">
 <h1>Takeaways</h1>
