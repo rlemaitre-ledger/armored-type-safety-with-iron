@@ -98,6 +98,7 @@ alt="Raphaël Lemaitre" />
   "0500013M026",
   "06"
 )</code></pre>
+<p><span style="font-size: 400%;">👍</span></p>
 </section>
 <section id="section-3" class="slide level2" data-auto-animate="">
 <h2 data-auto-animate=""></h2>
@@ -110,10 +111,11 @@ alt="Raphaël Lemaitre" />
   "20041",
   "01005"
 )</code></pre>
+<p><span style="font-size: 400%;">🤔</span></p>
 </section>
 <section id="section-4" class="slide level2" data-auto-animate="">
 <h2 data-auto-animate=""></h2>
-<p>Then, you see this 🤯</p>
+<p>Then, you see this</p>
 <pre data-id="code-model"><code class="scala" data-line-numbers="">val wtf = IBAN(
   "🇫🇷",
   "✅",
@@ -122,6 +124,7 @@ alt="Raphaël Lemaitre" />
   "🧾",
   "🤡"
 )</code></pre>
+<p><span style="font-size: 400%;">🤯</span></p>
 </section></section>
 <section>
 <section id="how-can-we-do-better" class="title-slide slide level1">
@@ -194,6 +197,7 @@ case class NationalCheckDigit(value: String) extends AnyVal</code></pre>
   AccountNumber("0500013M026"),
   NationalCheckDigit("06")
 )</code></pre>
+<p><span style="font-size: 400%;">👍</span></p>
 </section>
 <section id="section-7" class="slide level2" data-auto-animate="">
 <h2 data-auto-animate=""></h2>
@@ -206,9 +210,10 @@ case class NationalCheckDigit(value: String) extends AnyVal</code></pre>
   BankCode("20041"),
   BranchCode("01005")
 )</code></pre>
+<p><span style="font-size: 400%;">👍</span></p>
 </section>
-<section class="slide level2">
-
+<section id="section-8" class="slide level2" data-auto-animate="">
+<h2 data-auto-animate=""></h2>
 <p>But this one still compiles</p>
 <pre data-id="code"><code class="scala" data-line-numbers="">val wtf = IBAN(
   CountryCode("🇫🇷"),
@@ -218,11 +223,12 @@ case class NationalCheckDigit(value: String) extends AnyVal</code></pre>
   AccountNumber("🧾"),
   NationalCheckDigit("🤡")
 )</code></pre>
+<p><span style="font-size: 400%;">😤</span></p>
 </section>
 <section id="lets-add-validation" class="slide level2">
 <h2>Let’s add validation</h2>
 </section>
-<section id="section-8" class="slide level2">
+<section id="section-9" class="slide level2">
 <h2></h2>
 <pre ><code class="scala">case class CountryCode(value: String) extends AnyVal:
   require(value.length == 2, "Country code must be 2 characters")
@@ -245,12 +251,12 @@ case class NationalCheckDigit(value: String) extends AnyVal:
 <section id="lets-validate-without-crashing" class="slide level2">
 <h2>Let’s validate without crashing</h2>
 </section>
-<section id="section-9" class="slide level2">
+<section id="section-10" class="slide level2">
 <h2></h2>
 <pre ><code class="scala">case class FormatError(reason: String) 
    extends Exception(reason), NoStackTrace</code></pre>
 </section>
-<section id="section-10" class="slide level2">
+<section id="section-11" class="slide level2">
 <h2></h2>
 <pre data-id="either-code"><code class="scala" data-line-numbers="">case class CountryCode(value: String) extends AnyVal
 object CountryCode:
@@ -270,7 +276,7 @@ object BankCode:
     Either.cond(input.length == 5, BankCode(input),
       FormatError("Bank code must be 5 characters"))</code></pre>
 </section>
-<section id="section-11" class="slide level2">
+<section id="section-12" class="slide level2">
 <h2></h2>
 <pre data-id="either-code"><code class="scala" data-line-numbers="3,9,15|4-5,10-11,16-17">case class CountryCode(value: String) extends AnyVal
 object CountryCode:
@@ -290,7 +296,7 @@ object BankCode:
     Either.cond(input.length == 5, BankCode(input),
       FormatError("Bank code must be 5 characters"))</code></pre>
 </section>
-<section id="section-12" class="slide level2">
+<section id="section-13" class="slide level2">
 <h2></h2>
 <pre data-id="either-code"><code class="scala" data-line-numbers="">case class BranchCode(value: String) extends AnyVal
 object BranchCode:
@@ -310,7 +316,7 @@ object NationalCheckDigits:
     Either.cond(input.length == 2, NationalCheckDigits(input), 
       FormatError("Notional check digits must be 2 characters"))</code></pre>
 </section>
-<section id="section-13" class="slide level2">
+<section id="section-14" class="slide level2">
 <h2></h2>
 <pre data-id="either-code"><code class="scala" data-line-numbers="3,9,15|4-5,10-11,16-17">case class BranchCode(value: String) extends AnyVal
 object BranchCode:
@@ -330,7 +336,7 @@ object NationalCheckDigits:
     Either.cond(input.length == 2, NationalCheckDigits(input), 
       FormatError("Notional check digits must be 2 characters"))</code></pre>
 </section>
-<section id="section-14" class="slide level2">
+<section id="section-15" class="slide level2">
 <h2></h2>
 <pre data-id="opaque-types-code"><code class="scala" data-line-numbers="">opaque type BranchCode &lt;: String = String
 object BranchCode:
@@ -617,16 +623,11 @@ style="background: #4aa3a2; width: 50px; height: 50px;">
 </tbody>
 </table>
 </section></section>
+<section>
 <section id="something-smarter-and-with-less-boilerplate"
 class="title-slide slide level1">
 <h1>Something smarter and with less boilerplate?</h1>
-
-</section>
-
-<section>
-<section id="meet-iron" class="title-slide slide level1">
-<h1>Meet Iron</h1>
-
+<p><img data-src="images/iron-logo.png" /></p>
 </section>
 <section id="what-is-iron" class="slide level2" data-auto-animate="">
 <h2 data-auto-animate="">What is Iron?</h2>
@@ -704,13 +705,13 @@ by Raphaël Fromentin</p>
 <section id="what-is-iron-5" class="slide level2" data-auto-animate="">
 <h2 data-auto-animate="">What is Iron?</h2>
 <p><strong>Composable type constraint</strong> library</p>
-<pre data-id="constaint-code"><code class="scala" data-line-numbers="7">final class Positive
+<pre data-id="code"><code class="scala" data-line-numbers="7">final class Positive
 // ...
 val x: Int :| Positive = 1
 //Compile-time error: Should be strictly positive
 val y: Int :| Positive = -1 
 
-val foo: Int :| Positive :| Less[42] = 1
+val foo: Int :| (Positive & Less[42]) = 1
 
 
 
@@ -725,15 +726,15 @@ by Raphaël Fromentin</p>
 <section id="what-is-iron-6" class="slide level2" data-auto-animate="">
 <h2 data-auto-animate="">What is Iron?</h2>
 <p><strong>Composable type constraint</strong> library</p>
-<pre data-id="constaint-code"><code class="scala" data-line-numbers="8-9">final class Positive
+<pre data-id="code"><code class="scala" data-line-numbers="8-9">final class Positive
 // ...
 val x: Int :| Positive = 1
 //Compile-time error: Should be strictly positive
 val y: Int :| Positive = -1 
 
-val foo: Int :| Positive :| Less[42] = 1
+val foo: Int :| (Positive & Less[42]) = 1
 //Compile-time error: Should be strictly positive
-val bar: Int :| Positive :| Less[42] = -1 
+val bar: Int :| (Positive & Less[42]) = -1 
 
 
 //</code></pre>
@@ -746,17 +747,17 @@ by Raphaël Fromentin</p>
 <section id="what-is-iron-7" class="slide level2" data-auto-animate="">
 <h2 data-auto-animate="">What is Iron?</h2>
 <p><strong>Composable type constraint</strong> library</p>
-<pre data-id="constaint-code"><code class="scala" data-line-numbers="10-11">final class Positive
+<pre data-id="code"><code class="scala" data-line-numbers="10-11">final class Positive
 // ...
 val x: Int :| Positive = 1
 //Compile-time error: Should be strictly positive
 val y: Int :| Positive = -1 
 
-val foo: Int :| Positive :| Less[42] = 1
+val foo: Int :| (Positive & Less[42]) = 1
 //Compile-time error: Should be strictly positive
-val bar: Int :| Positive :| Less[42] = -1 
+val bar: Int :| (Positive & Less[42]) = -1 
 //Compile-time error: Should be less than 42
-val baz: Int :| Positive :| Less[42] = 123
+val baz: Int :| (Positive & Less[42]) = 123
 //</code></pre>
 <div class="faded">
 <p>Created in Scala 3 <span class="devicon-scala-plain colored"></span>
@@ -764,8 +765,27 @@ by Raphaël Fromentin</p>
 <p>It enables binding constraints to a specific type</p>
 </div>
 </section>
-<section id="validation" class="slide level2">
-<h2>Validation</h2>
+<section id="validation" class="slide level2" data-auto-animate="">
+<h2 data-auto-animate="">Validation</h2>
+</section>
+<section id="validation-1" class="slide level2" data-auto-animate="">
+<h2 data-auto-animate="">Validation</h2>
+<pre data-id="code"><code class="scala" data-line-numbers="">val value: Int = ???
+val x: Int :| Greater[0] = value</code></pre>
+</section>
+<section id="validation-2" class="slide level2" data-auto-animate="">
+<h2 data-auto-animate="">Validation</h2>
+<pre data-id="code"><code class="scala" data-line-numbers="">inline val value = 2
+val x: Int :| Greater[0] = value</code></pre>
+</section>
+<section id="what-if-the-value-is-known-at-runtime" class="slide level2"
+data-auto-animate="">
+<h2 data-auto-animate="">What if the value is known at runtime?</h2>
+<pre data-id="code"><code class="scala" data-line-numbers="">val value = ???
+val x: Int :| Greater[0] = value.refine</code></pre>
+<aside class="notes">
+<p>Illegal argumet exc</p>
+</aside>
 </section>
 <section id="constrained-opaque-types" class="slide level2">
 <h2>Constrained Opaque Types</h2>
