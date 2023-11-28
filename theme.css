@@ -30,7 +30,7 @@ section.has-light-background h6 {
   --r-heading-letter-spacing: normal;
   --r-heading-text-transform: uppercase;
   --r-heading-text-shadow: none;
-  --r-heading-font-weight: 100;
+  --r-heading-font-weight: 200;
   --r-heading1-text-shadow: none;
   --r-heading1-size: 2.5em;
   --r-heading2-size: 1.6em;
@@ -550,7 +550,7 @@ img.qrcode {
 
 .faded {
   font-size: 50%;
-  /* opacity: 0.5; */
+  opacity: 0.5;
 }
 .details {
   font-size: 100%;
