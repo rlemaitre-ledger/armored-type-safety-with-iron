@@ -630,6 +630,67 @@ No implementation leak
 - *Ciris*
 - *Scalacheck*
 
+## Integration Exemples
+
+```scala
+final case class Tag(name: Tag.Name, value: Tag.Value)
+
+object Tag:
+
+  private type NameConstraint = Not[Empty] & MaxLength[128]
+  opaque type Name <: String  = String :| NameConstraint
+
+  object Name extends RefinedTypeOps[String, NameConstraint, Name]
+
+  private type ValueConstraint = Not[Empty] & MaxLength[512]
+  opaque type Value <: String  = String :| ValueConstraint
+
+  object Value extends RefinedTypeOps[String, ValueConstraint, Value]
+```
+
+## Integration Exemples : Tapir
+```scala
+val getLatest = base
+  .name("Get latest account addresses")
+  .in(query[Option[Tag]]("tag"))
+  .get
+  .in("latest")
+  .out(jsonBody[Option[AddressView]])
+```
+
+## Integration Exemples : Doobie
+```scala
+def getLatestByTag(account: AccountId, name: Tag.Name, value: Tag.Value): ConnectionIO[Option[Position]] =
+  sql"""
+  select
+    account_id,
+    address,
+    coalesce(
+      (select jsonb_object_agg(tag_name, tag_value order by tag_name) 
+       from position_tags pt where p.position_id = pt.position_id),
+      '{}'::jsonb),
+    sync_status
+  from positions p left join position_tags pt using (position_id)
+  where account_id = $account
+    and tag_name   = $name
+    and tag_value  = $value
+  order by position_id desc limit 1
+  """.query[Position].option
+```
+
+## Making an integration : Doobie
+
+```scala
+  inline given [A, C]
+    (using inline meta: Meta[A])
+    (using Constraint[A, C], Show[A]): Meta[A :| C] =
+      meta.tiemap[A :| C](_.refineEither)(identity)
+
+  inline given [T]
+    (using m: RefinedTypeOps.Mirror[T], ev: Meta[m.IronType]): Meta[T] =
+      ev.asInstanceOf[Meta[T]]
+```
+
 # Takeaways
 
 > Making illegal states unrepresentable
