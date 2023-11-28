@@ -73,7 +73,6 @@ val shuffled = IBAN(
   "01005"
 )
 ```
-[🧑‍💻]{style="font-size: 400%;"}
 
 ## {data-auto-animate=""}
 
