@@ -467,7 +467,8 @@ is Iron?</h2>
 import io.github.iltotore.iron.*
 given Constraint[Int, Positive] with
   override inline def test(value: Int): Boolean = value &gt; 0
-  override inline def message: String = "Should be strictly positive"</code></pre>
+  override inline def message: String = "Should be strictly positive"
+</code></pre>
 </section>
 <section id="what-is-iron-4" class="slide level2"
 data-auto-animate="true" data-auto-animate-easing="ease-in-out">
@@ -482,9 +483,23 @@ given Constraint[Int, Positive] with
 
 val x: Int :| Positive = 1
 //Compile-time error: Should be strictly positive
-val y: Int :| Positive = -1 </code></pre>
+val y: Int :| Positive = -1 
+</code></pre>
 </section>
 <section id="what-is-iron-5" class="slide level2"
+data-auto-animate="true" data-auto-animate-easing="ease-in-out">
+<h2 data-auto-animate="true" data-auto-animate-easing="ease-in-out">What
+is Iron?</h2>
+<p>Composable <strong>type constraint</strong> library</p>
+<pre data-id="constaint-code"><code class="scala" data-line-numbers="7|8-9">final class Positive
+// ...
+
+val x: Int :| Positive = 1
+//Compile-time error: Should be strictly positive
+val y: Int :| Positive = -1 
+</code></pre>
+</section>
+<section id="what-is-iron-6" class="slide level2"
 data-auto-animate="true" data-auto-animate-easing="ease-in-out">
 <h2 data-auto-animate="true" data-auto-animate-easing="ease-in-out">What
 is Iron?</h2>
@@ -500,7 +515,8 @@ val foo: Int :| Positive :| Less[42] = 1
 //Compile-time error: Should be strictly positive
 val bar: Int :| Positive :| Less[42] = -1 
 //Compile-time error: Should be less than 42
-val baz: Int :| Positive :| Less[42] = 100</code></pre>
+val baz: Int :| Positive :| Less[42] = 100
+</code></pre>
 </section>
 <section id="composition" class="slide level2">
 <h2>Composition</h2>
