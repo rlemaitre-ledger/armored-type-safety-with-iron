@@ -33,7 +33,7 @@ date: November 28th, 2023
 
 Suppose you find this code in your codebase
 
-```scala {data-id="code-model" data-line-numbers=""}
+```scala {data-id="code" data-line-numbers=""}
 case class IBAN(
   countryCode: String,
   checkDigits: String,
@@ -48,7 +48,7 @@ case class IBAN(
 
 This looks good
 
-```scala {data-id="code-model" data-line-numbers=""}
+```scala {data-id="code" data-line-numbers=""}
 val iban = IBAN(
   "FR",
   "14",
@@ -64,7 +64,7 @@ val iban = IBAN(
 
 Until you find something like this
 
-```scala {data-id="code-model" data-line-numbers=""}
+```scala {data-id="code" data-line-numbers=""}
 val shuffled = IBAN(
   "0500013M026",
   "FR",
@@ -80,7 +80,7 @@ val shuffled = IBAN(
 
 Then, you see this
 
-```scala {data-id="code-model" data-line-numbers=""}
+```scala {data-id="code" data-line-numbers=""}
 val wtf = IBAN(
   "🇫🇷",
   "✅",
@@ -96,9 +96,9 @@ val wtf = IBAN(
 
 ## Maybe with Type aliases?
 
----
+##
 
-```scala
+```scala {data-id="code" data-line-numbers=""}
 type CountryCode = String
 type CheckDigits = String
 type BankCode = String
@@ -115,22 +115,19 @@ case class IBAN(
   nationalCheckDigit: NationalCheckDigit
 )
 ```
+::: notes
 
----
-
-:::::::::::::: {.columns}
-::: {.column width=50%}
-### 👍 Pros
+Pros
 
 - Legibility
-:::
-::: {.column width=50%}
-### 👎 Cons
+
+Cons
 
 - Substitutions are possible
 - No validation
+
+
 :::
-::::::::::::::
 
 ## So, maybe with value classes?
 
@@ -327,14 +324,14 @@ object BranchCode:
 ```
 
 ## Summary
-|              | Legible | Ordered  | Valid | Pure | Performance | Concise | 
-|:------------:|:-------:|:--------:|:-----:|:----:|:-----------:|:-------:|
-|Raw Classes   | ❌      | ❌       | ❌    | ❌   | ❌          | ❌      |
-|Type Aliases  | ✅      | ❌       | ❌    | ❌   | ❌          | ❌      |
-|Value Classes | ✅      | ✅       | ❌    | ❌   | ❌          | ❌      |
-|VC + Require  | ✅      | ✅       | ✅    | ❌   | ❌          | ❌      |
-|VC + Either   | ✅      | ✅       | ✅    | ✅   | ❌          | ❌      |
-|Opaque types  | ✅      | ✅       | ✅    | ✅   | ✅          | ❌      |
+|               | Legible | Ordered | Valid | Pure  | Performance | Concise |
+| :-----------: | :-----: | :-----: | :---: | :---: | :---------: | :-----: |
+|  Raw Classes  |    ❌    |    ❌    |   ❌   |   ❌   |      ❌      |    ❌    |
+| Type Aliases  |    ✅    |    ❌    |   ❌   |   ❌   |      ❌      |    ❌    |
+| Value Classes |    ✅    |    ✅    |   ❌   |   ❌   |      ❌      |    ❌    |
+| VC + Require  |    ✅    |    ✅    |   ✅   |   ❌   |      ❌      |    ❌    |
+|  VC + Either  |    ✅    |    ✅    |   ✅   |   ✅   |      ❌      |    ❌    |
+| Opaque types  |    ✅    |    ✅    |   ✅   |   ✅   |      ✅      |    ❌    |
 
 ## Feedback loop {data-auto-animate=""}
 
@@ -407,18 +404,19 @@ Compilation time
 
 ## Summary
 
-|              | Legible | Ordered  | Valid | Pure | Performance | Concise | Compiles |
-|:------------:|:-------:|:--------:|:-----:|:----:|:-----------:|:-------:|:--------:|
-|Raw Classes   | ❌      | ❌       | ❌    | ❌   | ❌          | ❌      | ❌      |
-|Type Aliases  | ✅      | ❌       | ❌    | ❌   | ❌          | ❌      | ❌      |
-|Value Classes | ✅      | ✅       | ❌    | ❌   | ❌          | ❌      | ❌      |
-|VC + Require  | ✅      | ✅       | ✅    | ❌   | ❌          | ❌      | ❌      |
-|VC + Either   | ✅      | ✅       | ✅    | ✅   | ❌          | ❌      | ❌      |
-|Opaque types  | ✅      | ✅       | ✅    | ✅   | ✅          | ❌      | ❌      |
-|**Iron**      | ✅      | ✅       | ✅    | ✅   | ✅          | ✅      | ✅      |
+|               | Legible | Ordered | Valid | Pure  | Performance | Concise | Compiles |
+| :-----------: | :-----: | :-----: | :---: | :---: | :---------: | :-----: | :------: |
+|  Raw Classes  |    ❌    |    ❌    |   ❌   |   ❌   |      ❌      |    ❌    |    ❌     |
+| Type Aliases  |    ✅    |    ❌    |   ❌   |   ❌   |      ❌      |    ❌    |    ❌     |
+| Value Classes |    ✅    |    ✅    |   ❌   |   ❌   |      ❌      |    ❌    |    ❌     |
+| VC + Require  |    ✅    |    ✅    |   ✅   |   ❌   |      ❌      |    ❌    |    ❌     |
+|  VC + Either  |    ✅    |    ✅    |   ✅   |   ✅   |      ❌      |    ❌    |    ❌     |
+| Opaque types  |    ✅    |    ✅    |   ✅   |   ✅   |      ✅      |    ❌    |    ❌     |
+|   **Iron**    |    ✅    |    ✅    |   ✅   |   ✅   |      ✅      |    ✅    |    ✅     |
 
 # Something smarter and with less boilerplate?
 
+# 
 ![](images/iron-logo.png)
 
 ## What is Iron? {data-auto-animate=""}
@@ -606,14 +604,40 @@ val x: Int :| Greater[0] = value.refine
 ```
 
 ::: notes
-Illegal argumet exc
+Imperative
+
+Illegal argument exception
+:::
+
+## What if the value is known at runtime? {data-auto-animate=""}
+
+```scala {data-id="code" data-line-numbers=""}
+def createIBAN(  countryCode: String,
+  checkDigits: String,
+  bankCode: String,
+  branchCode: String,
+  accountNumber: String,
+  nationalCheckDigit: String
+): Either[String, User] =
+  for
+    ctr <- countryCode.refineEither[Alphanumeric]
+    chk <- countryCode.refineEither[Alphanumeric]
+    ban <- countryCode.refineEither[Alphanumeric]
+    bra <- countryCode.refineEither[Alphanumeric]
+    acc <- countryCode.refineEither[Alphanumeric]
+    nck <- countryCode.refineEither[Alphanumeric]
+  yield IBAN(ctr, chk, ban, bra, acc, nck)
+```
+
+::: notes
+
+Functional
+
 :::
 
 ## Constrained Opaque Types
 
 No implementation leak
-
-## Before / After
 
 # Iron ![](images/scalalove-logo.svg){.logo} Ecosystem
 
