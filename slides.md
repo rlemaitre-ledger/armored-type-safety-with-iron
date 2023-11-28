@@ -58,6 +58,7 @@ val iban = IBAN(
   "06"
 )
 ```
+ [👍]{style="font-size: 400%;"}
 
 ## {data-auto-animate=""}
 
@@ -73,10 +74,11 @@ val shuffled = IBAN(
   "01005"
 )
 ```
+[🤔]{style="font-size: 400%;"}
 
 ## {data-auto-animate=""}
 
-Then, you see this 🤯
+Then, you see this
 
 ```scala {data-id="code-model" data-line-numbers=""}
 val wtf = IBAN(
@@ -88,6 +90,7 @@ val wtf = IBAN(
   "🤡"
 )
 ```
+[🤯]{style="font-size: 400%;"}
 
 # How can we do better?
 
@@ -161,6 +164,7 @@ val iban = IBAN(
   NationalCheckDigit("06")
 )
 ```
+ [👍]{style="font-size: 400%;"}
 
 ## {data-auto-animate=""}
 
@@ -176,8 +180,9 @@ val shuffled = IBAN(
   BranchCode("01005")
 )
 ```
+ [👍]{style="font-size: 400%;"}
 
----
+## {data-auto-animate=""}
 
 But this one still compiles
 
@@ -191,6 +196,7 @@ val wtf = IBAN(
   NationalCheckDigit("🤡")
 )
 ```
+ [😤]{style="font-size: 400%;"}
 
 ## Let's add validation
 
@@ -413,7 +419,7 @@ Compilation time
 
 # Something smarter and with less boilerplate?
 
-# Meet Iron
+![](images/iron-logo.png)
 
 ## What is Iron? {data-auto-animate=""}
 
@@ -504,14 +510,14 @@ It enables binding constraints to a specific type
 
 **Composable type constraint** library
 
-```scala {data-id="constaint-code" data-line-numbers="7"}
+```scala {data-id="code" data-line-numbers="7"}
 final class Positive
 // ...
 val x: Int :| Positive = 1
 //Compile-time error: Should be strictly positive
 val y: Int :| Positive = -1 
 
-val foo: Int :| Positive :| Less[42] = 1
+val foo: Int :| (Positive & Less[42]) = 1
 
 
 
@@ -529,16 +535,16 @@ It enables binding constraints to a specific type
 
 **Composable type constraint** library
 
-```scala {data-id="constaint-code" data-line-numbers="8-9"}
+```scala {data-id="code" data-line-numbers="8-9"}
 final class Positive
 // ...
 val x: Int :| Positive = 1
 //Compile-time error: Should be strictly positive
 val y: Int :| Positive = -1 
 
-val foo: Int :| Positive :| Less[42] = 1
+val foo: Int :| (Positive & Less[42]) = 1
 //Compile-time error: Should be strictly positive
-val bar: Int :| Positive :| Less[42] = -1 
+val bar: Int :| (Positive & Less[42]) = -1 
 
 
 //
@@ -555,18 +561,18 @@ It enables binding constraints to a specific type
 
 **Composable type constraint** library
 
-```scala {data-id="constaint-code" data-line-numbers="10-11"}
+```scala {data-id="code" data-line-numbers="10-11"}
 final class Positive
 // ...
 val x: Int :| Positive = 1
 //Compile-time error: Should be strictly positive
 val y: Int :| Positive = -1 
 
-val foo: Int :| Positive :| Less[42] = 1
+val foo: Int :| (Positive & Less[42]) = 1
 //Compile-time error: Should be strictly positive
-val bar: Int :| Positive :| Less[42] = -1 
+val bar: Int :| (Positive & Less[42]) = -1 
 //Compile-time error: Should be less than 42
-val baz: Int :| Positive :| Less[42] = 123
+val baz: Int :| (Positive & Less[42]) = 123
 //
 ```
 
@@ -576,7 +582,32 @@ Created in Scala 3 []{.devicon-scala-plain .colored} by Raphaël Fromentin
 It enables binding constraints to a specific type
 :::
 
-## Validation
+## Validation {data-auto-animate=""}
+
+## Validation {data-auto-animate=""}
+
+```scala {data-id="code" data-line-numbers=""}
+val value: Int = ???
+val x: Int :| Greater[0] = value
+```
+
+## Validation {data-auto-animate=""}
+
+```scala {data-id="code" data-line-numbers=""}
+inline val value = 2
+val x: Int :| Greater[0] = value
+```
+
+## What if the value is known at runtime? {data-auto-animate=""}
+
+```scala {data-id="code" data-line-numbers=""}
+val value = ???
+val x: Int :| Greater[0] = value.refine
+```
+
+::: notes
+Illegal argumet exc
+:::
 
 ## Constrained Opaque Types
 
