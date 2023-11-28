@@ -400,6 +400,7 @@ import io.github.iltotore.iron.*
 given Constraint[Int, Positive] with
   override inline def test(value: Int): Boolean = value > 0
   override inline def message: String = "Should be strictly positive"
+
 ```
 
 ## What is Iron? {auto-animate=true auto-animate-easing=ease-in-out}
@@ -416,6 +417,21 @@ given Constraint[Int, Positive] with
 val x: Int :| Positive = 1
 //Compile-time error: Should be strictly positive
 val y: Int :| Positive = -1 
+
+```
+
+## What is Iron? {auto-animate=true auto-animate-easing=ease-in-out}
+
+Composable **type constraint** library
+
+```scala {data-id="constaint-code" data-line-numbers="7|8-9"}
+final class Positive
+// ...
+
+val x: Int :| Positive = 1
+//Compile-time error: Should be strictly positive
+val y: Int :| Positive = -1 
+
 ```
 
 ## What is Iron? {auto-animate=true auto-animate-easing=ease-in-out}
@@ -435,6 +451,7 @@ val foo: Int :| Positive :| Less[42] = 1
 val bar: Int :| Positive :| Less[42] = -1 
 //Compile-time error: Should be less than 42
 val baz: Int :| Positive :| Less[42] = 100
+
 ```
 
 ## Composition
