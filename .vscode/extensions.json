@@ -1,5 +1,6 @@
 {
   "recommendations": [
-    "ms-vscode.live-server"
+    "ms-vscode.live-server",
+    "evilz.vscode-reveal"
   ]
 }
