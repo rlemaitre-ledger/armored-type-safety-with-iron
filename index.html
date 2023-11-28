@@ -812,6 +812,22 @@ class="slide level2" data-auto-animate="">
 <section id="constrained-opaque-types" class="slide level2">
 <h2>Constrained Opaque Types</h2>
 <p>No implementation leak</p>
+<pre ><code class="scala">opaque type Positive &lt;: Int  = Int :| Greater[0]
+
+object Positive extends RefinedTypeOps[Int, Greater[0], Positive]</code></pre>
+</section>
+<section id="constrained-opaque-types-1" class="slide level2">
+<h2>Constrained Opaque Types</h2>
+<p>Constraint factorization</p>
+<pre ><code class="scala">private type SatsConstraint = 
+  GreaterEqual[0] & LessEqual[100000000 * 21000000]
+
+opaque type Sats &lt;: Long = Long :| SatsConstraint
+
+object Sats extends RefinedTypeOps[Long, SatsConstraint, Sats]</code></pre>
+</section>
+<section id="before-after" class="slide level2">
+<h2>Before / After</h2>
 </section></section>
 <section>
 <section id="iron-ecosystem" class="title-slide slide level1">
