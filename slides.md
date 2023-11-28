@@ -622,16 +622,26 @@ No implementation leak
 - Cats (`Validated`, `Either` + `Parallel[F]`)
 - ZIO (`Validation`)
 
-## Typeclass instances 
+## Typeclasses instances 
 
-- Tapir
-- JSON
-- doobie
-- skunk
-- Ciris
-- Scalacheck
+- *Tapir*
+- JSON (*Circe*, *Jsoniter*, *ZIO-JSON*)
+- Databases (*doobie*, *skunk*)
+- *Ciris*
+- *Scalacheck*
 
 # Takeaways
+
+> Making illegal states unrepresentable
+
+[Yaron Minsky](https://blog.janestreet.com/effective-ml-revisited/)
+
+# Takeaways
+
+Scala 3 type system is incredibly powerful
+
+# Takeaways
+Noticeably increased the reliability of our code
 
 # Thank you!
 
