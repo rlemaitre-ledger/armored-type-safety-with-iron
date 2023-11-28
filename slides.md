@@ -76,36 +76,6 @@ val shuffled = IBAN(
 
 ## {data-auto-animate=""}
 
-Until you find something like this
-
-```scala {data-id="code" data-line-numbers=""}
-val shuffled = IBAN(
-  "0500013M026",
-  "FR",
-  "06",
-  "14",
-  "20041",
-  "01005"
-)
-```
-
-## {data-auto-animate=""}
-
-So, you try this
-
-```scala {data-id="code" data-line-numbers=""}
-val wtf = IBAN(
-  "🇫🇷",
-  "✅",
-  "🏦",
-  "🌳",
-  "🧾",
-  "🤡"
-)
-```
-
-## {data-auto-animate=""}
-
 So, you try this
 
 ```scala {data-id="code" data-line-numbers=""}
