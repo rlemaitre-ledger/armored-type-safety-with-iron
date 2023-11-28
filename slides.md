@@ -320,6 +320,16 @@ object BranchCode:
       FormatError("Branch code must be 5 characters"))
 ```
 
+## Summary
+|              | Legible | Ordered  | Valid | Pure | Performance | Concise | 
+|:------------:|:-------:|:--------:|:-----:|:----:|:-----------:|:-------:|
+|Raw Classes   | ❌      | ❌       | ❌    | ❌   | ❌          | ❌      |
+|Type Aliases  | ✅      | ❌       | ❌    | ❌   | ❌          | ❌      |
+|Value Classes | ✅      | ✅       | ❌    | ❌   | ❌          | ❌      |
+|VC + Require  | ✅      | ✅       | ✅    | ❌   | ❌          | ❌      |
+|VC + Either   | ✅      | ✅       | ✅    | ✅   | ❌          | ❌      |
+|Opaque types  | ✅      | ✅       | ✅    | ✅   | ✅          | ❌      |
+
 ## Feedback loop {data-auto-animate=""}
 
 How much time do we need to find a bug?
@@ -388,6 +398,18 @@ Unit tests
 ::::
 
 Compilation time
+
+## Summary
+
+|              | Legible | Ordered  | Valid | Pure | Performance | Concise | Compiles |
+|:------------:|:-------:|:--------:|:-----:|:----:|:-----------:|:-------:|:--------:|
+|Raw Classes   | ❌      | ❌       | ❌    | ❌   | ❌          | ❌      | ❌      |
+|Type Aliases  | ✅      | ❌       | ❌    | ❌   | ❌          | ❌      | ❌      |
+|Value Classes | ✅      | ✅       | ❌    | ❌   | ❌          | ❌      | ❌      |
+|VC + Require  | ✅      | ✅       | ✅    | ❌   | ❌          | ❌      | ❌      |
+|VC + Either   | ✅      | ✅       | ✅    | ✅   | ❌          | ❌      | ❌      |
+|Opaque types  | ✅      | ✅       | ✅    | ✅   | ✅          | ❌      | ❌      |
+|**Iron**      | ✅      | ✅       | ✅    | ✅   | ✅          | ✅      | ✅      |
 
 # Something smarter and with less boilerplate?
 
