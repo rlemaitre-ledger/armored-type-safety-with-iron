@@ -27,9 +27,9 @@ date: November 28th, 2023
 :::
 ::::::
 
-# Rationale
+# Story time
 
-## {data-auto-animate=""}
+##
 
 Suppose you find this code in your codebase
 
@@ -58,7 +58,6 @@ val iban = IBAN(
   "06"
 )
 ```
- [👍]{style="font-size: 400%;"}
 
 ## {data-auto-animate=""}
 
@@ -74,11 +73,26 @@ val shuffled = IBAN(
   "01005"
 )
 ```
-[🤔]{style="font-size: 400%;"}
+[🧑‍💻]{style="font-size: 400%;"}
 
 ## {data-auto-animate=""}
 
-Then, you see this
+Until you find something like this
+
+```scala {data-id="code" data-line-numbers=""}
+val shuffled = IBAN(
+  "0500013M026",
+  "FR",
+  "06",
+  "14",
+  "20041",
+  "01005"
+)
+```
+
+## {data-auto-animate=""}
+
+So, you try this
 
 ```scala {data-id="code" data-line-numbers=""}
 val wtf = IBAN(
@@ -90,7 +104,21 @@ val wtf = IBAN(
   "🤡"
 )
 ```
-[🤯]{style="font-size: 400%;"}
+
+## {data-auto-animate=""}
+
+So, you try this
+
+```scala {data-id="code" data-line-numbers=""}
+val wtf = IBAN(
+  "🇫🇷",
+  "✅",
+  "🏦",
+  "🌳",
+  "🧾",
+  "🤡"
+)
+```
 
 # How can we do better?
 
@@ -161,7 +189,6 @@ val iban = IBAN(
   NationalCheckDigit("06")
 )
 ```
- [👍]{style="font-size: 400%;"}
 
 ## {data-auto-animate=""}
 
@@ -177,7 +204,6 @@ val shuffled = IBAN(
   BranchCode("01005")
 )
 ```
- [👍]{style="font-size: 400%;"}
 
 ## {data-auto-animate=""}
 
@@ -193,7 +219,6 @@ val wtf = IBAN(
   NationalCheckDigit("🤡")
 )
 ```
- [😤]{style="font-size: 400%;"}
 
 ## Let's add validation
 

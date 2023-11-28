@@ -28,6 +28,7 @@ build:
     --variable=highlightjs:true \
     --variable=highlightjs-theme:monokai \
     --variable=navigationMode:linear \
+    --variable="slideNumber:'c'" \
     --variable="keyboard:{13: 'next', 33: 'prev', 34: 'next'}" \
     --slide-level=2 \
     --output={{target}}/{{output}} \
