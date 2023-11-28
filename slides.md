@@ -198,22 +198,21 @@ case class NationalCheckDigit(value: String) extends AnyVal:
 case class FormatError(reason: String) 
    extends Exception(reason), NoStackTrace
 ```
-
 ##
-```scala
-case class CountryCode(value: String) extends AnyVal:
+```scala {data-id="either-code" data-line-numbers=""}
+case class CountryCode(value: String) extends AnyVal
 object CountryCode:
   def parse(input: String): Either[FormatError, CountryCode] =
     Either.cond(input.length == 2, CountryCode(input), 
       FormatError("Country code must be 2 characters"))
 
-case class CheckDigits(value: String) extends AnyVal:
+case class CheckDigits(value: String) extends AnyVal
 object CheckDigits:
   def parse(input: String): Either[FormatError, CheckDigits] =
     Either.cond(input.length == 2, CheckDigits(input), 
       FormatError("Check digits must be 2 characters"))
 
-case class BankCode(value: String) extends AnyVal:
+case class BankCode(value: String) extends AnyVal
 object BankCode:
   def parse(input: String): Either[FormatError, BankCode] =
     Either.cond(input.length == 5, BankCode(input),
@@ -221,24 +220,80 @@ object BankCode:
 ```
 
 ##
-```scala
-case class BranchCode(value: String) extends AnyVal:
+```scala {data-id="either-code" data-line-numbers="3,9,15|4-5,10-11,16-17"}
+case class CountryCode(value: String) extends AnyVal
+object CountryCode:
+  def parse(input: String): Either[FormatError, CountryCode] =
+    Either.cond(input.length == 2, CountryCode(input), 
+      FormatError("Country code must be 2 characters"))
+
+case class CheckDigits(value: String) extends AnyVal
+object CheckDigits:
+  def parse(input: String): Either[FormatError, CheckDigits] =
+    Either.cond(input.length == 2, CheckDigits(input), 
+      FormatError("Check digits must be 2 characters"))
+
+case class BankCode(value: String) extends AnyVal
+object BankCode:
+  def parse(input: String): Either[FormatError, BankCode] =
+    Either.cond(input.length == 5, BankCode(input),
+      FormatError("Bank code must be 5 characters"))
+```
+
+##
+```scala {data-id="either-code" data-line-numbers=""}
+case class BranchCode(value: String) extends AnyVal
 object BranchCode:
   def parse(input: String): Either[FormatError, BranchCode] =
     Either.cond(input.length == 5, BranchCode(input), 
       FormatError("Branch code must be 5 characters"))
 
-case class AccountNumber(value: String) extends AnyVal:
+case class AccountNumber(value: String) extends AnyVal
 object AccountNumber:
   def parse(input: String): Either[FormatError, AccountNumber] =
     Either.cond(input.length == 11, AccountNumber(input), 
       FormatError("Account number must be 11 characters"))
 
-case class NationalCheckDigit(value: String) extends AnyVal:
+case class NationalCheckDigit(value: String) extends AnyVal
 object NationalCheckDigits:
   def parse(input: String): Either[FormatError, NationalCheckDigits] =
     Either.cond(input.length == 2, NationalCheckDigits(input), 
       FormatError("Notional check digits must be 2 characters"))
+```
+
+##
+```scala {data-id="either-code" data-line-numbers="3,9,15|4-5,10-11,16-17"}
+case class BranchCode(value: String) extends AnyVal
+object BranchCode:
+  def parse(input: String): Either[FormatError, BranchCode] =
+    Either.cond(input.length == 5, BranchCode(input), 
+      FormatError("Branch code must be 5 characters"))
+
+case class AccountNumber(value: String) extends AnyVal
+object AccountNumber:
+  def parse(input: String): Either[FormatError, AccountNumber] =
+    Either.cond(input.length == 11, AccountNumber(input), 
+      FormatError("Account number must be 11 characters"))
+
+case class NationalCheckDigit(value: String) extends AnyVal
+object NationalCheckDigits:
+  def parse(input: String): Either[FormatError, NationalCheckDigits] =
+    Either.cond(input.length == 2, NationalCheckDigits(input), 
+      FormatError("Notional check digits must be 2 characters"))
+```
+
+##
+```scala {data-id="opaque-types-code" data-line-numbers=""}
+opaque type BranchCode <: String = String
+object BranchCode:
+
+  inline def wrap(input: String): BranchCode = input
+
+  extension (value: BranchCode) inline def unwrap: String = value
+
+  def parse(input: String): Either[FormatError, BranchCode] =
+    Either.cond(input.length == 5, wrap(input), 
+      FormatError("Branch code must be 5 characters"))
 ```
 
 ## Feedback loop {auto-animate=true auto-animate-easing=ease-in-out}
