@@ -564,30 +564,19 @@ No implementation leak
 
 # Iron ![](images/scalalove-logo.svg){.logo} Ecosystem
 
-## Runtime
+## Refinement outputs
 
-- Cats
-- ZIO
+- Cats (`Validated`, `Either` + `Parallel[F]`)
+- ZIO (`Validation`)
 
-## API
+## Typeclass instances 
 
 - Tapir
-- Circe
-- Jsoniter
-- ZIO Json
-
-## Databases
-
+- JSON
 - doobie
 - skunk
-
-## Configuration
-
 - Ciris
-
-## Tests
-
-Scalacheck
+- Scalacheck
 
 # Takeaways
 
