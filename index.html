@@ -343,6 +343,87 @@ object BranchCode:
     Either.cond(input.length == 5, wrap(input), 
       FormatError("Branch code must be 5 characters"))</code></pre>
 </section>
+<section id="summary" class="slide level2">
+<h2>Summary</h2>
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 13%" />
+<col style="width: 14%" />
+<col style="width: 10%" />
+<col style="width: 8%" />
+<col style="width: 19%" />
+<col style="width: 13%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;"></th>
+<th style="text-align: center;">Legible</th>
+<th style="text-align: center;">Ordered</th>
+<th style="text-align: center;">Valid</th>
+<th style="text-align: center;">Pure</th>
+<th style="text-align: center;">Performance</th>
+<th style="text-align: center;">Concise</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Raw Classes</td>
+<td style="text-align: center;">❌</td>
+<td style="text-align: center;">❌</td>
+<td style="text-align: center;">❌</td>
+<td style="text-align: center;">❌</td>
+<td style="text-align: center;">❌</td>
+<td style="text-align: center;">❌</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Type Aliases</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">❌</td>
+<td style="text-align: center;">❌</td>
+<td style="text-align: center;">❌</td>
+<td style="text-align: center;">❌</td>
+<td style="text-align: center;">❌</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Value Classes</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">❌</td>
+<td style="text-align: center;">❌</td>
+<td style="text-align: center;">❌</td>
+<td style="text-align: center;">❌</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">VC + Require</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">❌</td>
+<td style="text-align: center;">❌</td>
+<td style="text-align: center;">❌</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">VC + Either</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">❌</td>
+<td style="text-align: center;">❌</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Opaque types</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">❌</td>
+</tr>
+</tbody>
+</table>
+</section>
 <section id="feedback-loop" class="slide level2" data-auto-animate="">
 <h2 data-auto-animate="">Feedback loop</h2>
 <p>How much time do we need to find a bug?</p>
@@ -436,6 +517,105 @@ style="background: #4aa3a2; width: 50px; height: 50px;">
 </div>
 </div>
 <p>Compilation time</p>
+</section>
+<section id="summary-1" class="slide level2">
+<h2>Summary</h2>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 11%" />
+<col style="width: 12%" />
+<col style="width: 8%" />
+<col style="width: 7%" />
+<col style="width: 16%" />
+<col style="width: 11%" />
+<col style="width: 12%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;"></th>
+<th style="text-align: center;">Legible</th>
+<th style="text-align: center;">Ordered</th>
+<th style="text-align: center;">Valid</th>
+<th style="text-align: center;">Pure</th>
+<th style="text-align: center;">Performance</th>
+<th style="text-align: center;">Concise</th>
+<th style="text-align: center;">Compiles</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Raw Classes</td>
+<td style="text-align: center;">❌</td>
+<td style="text-align: center;">❌</td>
+<td style="text-align: center;">❌</td>
+<td style="text-align: center;">❌</td>
+<td style="text-align: center;">❌</td>
+<td style="text-align: center;">❌</td>
+<td style="text-align: center;">❌</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Type Aliases</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">❌</td>
+<td style="text-align: center;">❌</td>
+<td style="text-align: center;">❌</td>
+<td style="text-align: center;">❌</td>
+<td style="text-align: center;">❌</td>
+<td style="text-align: center;">❌</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Value Classes</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">❌</td>
+<td style="text-align: center;">❌</td>
+<td style="text-align: center;">❌</td>
+<td style="text-align: center;">❌</td>
+<td style="text-align: center;">❌</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">VC + Require</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">❌</td>
+<td style="text-align: center;">❌</td>
+<td style="text-align: center;">❌</td>
+<td style="text-align: center;">❌</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">VC + Either</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">❌</td>
+<td style="text-align: center;">❌</td>
+<td style="text-align: center;">❌</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Opaque types</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">❌</td>
+<td style="text-align: center;">❌</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><strong>Iron</strong></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+</tbody>
+</table>
 </section></section>
 <section id="something-smarter-and-with-less-boilerplate"
 class="title-slide slide level1">
