@@ -381,103 +381,73 @@ class="title-slide slide level1">
 <h1>Meet Iron</h1>
 
 </section>
-<section id="what-is-iron" class="slide level2" data-id="what-title">
-<h2 data-id="what-title">What is Iron?</h2>
-<div data-id="constraint">
+<section id="what-is-iron" class="slide level2" data-auto-animate="true"
+data-auto-animate-easing="ease-in-out">
+<h2 data-auto-animate="true" data-auto-animate-easing="ease-in-out">What
+is Iron?</h2>
+</section>
+<section id="what-is-iron-1" class="slide level2"
+data-auto-animate="true" data-auto-animate-easing="ease-in-out">
+<h2 data-auto-animate="true" data-auto-animate-easing="ease-in-out">What
+is Iron?</h2>
 <p>Composable type constraint library</p>
-</div>
-<div data-id="creator">
 <p>Created in Scala 3 <span class="devicon-scala-plain colored"></span>
 by Raphaël Fromentin</p>
-</div>
-<div data-id="binding">
 <p>It enables binding constraints to a specific type</p>
-</div>
 </section>
-<section id="what-is-iron-1" class="slide level2" data-id="what-title">
-<h2 data-id="what-title"><span class="faded">What is Iron?</span></h2>
-<div data-id="constraint" style="font-size: 150%">
-<p>Composable type <span style="font-size: 200%;">constraint</span>
-library</p>
-<div style="font-size: var(--r-main-font-size);">
-<pre ><code class="scala">final class Positive
-
-import io.github.iltotore.iron.*
-
-given Constraint[Int, Positive] with
-
-  override inline def test(value: Int): Boolean = value &gt; 0
-
-  override inline def message: String = "Should be strictly positive"
-</code></pre>
-</div>
-</div>
-<div class="faded" data-id="creator">
+<section id="what-is-iron-2" class="slide level2"
+data-auto-animate="true" data-auto-animate-easing="ease-in-out">
+<h2 data-auto-animate="true" data-auto-animate-easing="ease-in-out">What
+is Iron?</h2>
+<p>Composable type <strong>constraint</strong> library</p>
+<pre data-id="constaint-code"><code class="scala" data-line-numbers="1">final class Positive</code></pre>
 <p>Created in Scala 3 <span class="devicon-scala-plain colored"></span>
 by Raphaël Fromentin</p>
-</div>
-<div class="faded" data-id="binding">
 <p>It enables binding constraints to a specific type</p>
-</div>
 </section>
-<section id="what-is-iron-2" class="slide level2" data-id="what-title">
-<h2 data-id="what-title"><span class="faded">What is Iron?</span></h2>
-<div data-id="constraint" style="font-size: 150%">
-<p>Composable <span style="font-size: 200%;">type constraint</span>
-library</p>
-<div style="font-size: var(--r-main-font-size);">
-<pre ><code class="scala" data-line-numbers="11|12--13">final class Positive
-
+<section id="what-is-iron-3" class="slide level2"
+data-auto-animate="true" data-auto-animate-easing="ease-in-out">
+<h2 data-auto-animate="true" data-auto-animate-easing="ease-in-out">What
+is Iron?</h2>
+<p>Composable type <strong>constraint</strong> library</p>
+<pre data-id="constaint-code"><code class="scala" data-line-numbers="2-5">final class Positive
 import io.github.iltotore.iron.*
-
 given Constraint[Int, Positive] with
-
   override inline def test(value: Int): Boolean = value &gt; 0
-
+  override inline def message: String = "Should be strictly positive"</code></pre>
+</section>
+<section id="what-is-iron-4" class="slide level2"
+data-auto-animate="true" data-auto-animate-easing="ease-in-out">
+<h2 data-auto-animate="true" data-auto-animate-easing="ease-in-out">What
+is Iron?</h2>
+<p>Composable <strong>type constraint</strong> library</p>
+<pre data-id="constaint-code"><code class="scala" data-line-numbers="7|8-9">final class Positive
+import io.github.iltotore.iron.*
+given Constraint[Int, Positive] with
+  override inline def test(value: Int): Boolean = value &gt; 0
   override inline def message: String = "Should be strictly positive"
 
 val x: Int :| Positive = 1
 //Compile-time error: Should be strictly positive
 val y: Int :| Positive = -1 </code></pre>
-</div>
-</div>
-<div class="faded" data-id="creator">
-<p>Created in Scala 3 <span class="devicon-scala-plain colored"></span>
-by Raphaël Fromentin</p>
-</div>
-<div class="faded" data-id="binding">
-<p>It enables binding constraints to a specific type</p>
-</div>
 </section>
-<section id="what-is-iron-3" class="slide level2" data-id="what-title">
-<h2 data-id="what-title"><span class="faded">What is Iron?</span></h2>
-<div data-id="constraint" style="font-size: 150%">
-<p><span style="font-size: 200%;">Composable type constraint</span>
-library</p>
-<div style="font-size: var(--r-main-font-size);">
-<pre ><code class="scala" data-line-numbers="9-|10-13">final class Positive
-final class Less[V]
-
+<section id="what-is-iron-5" class="slide level2"
+data-auto-animate="true" data-auto-animate-easing="ease-in-out">
+<h2 data-auto-animate="true" data-auto-animate-easing="ease-in-out">What
+is Iron?</h2>
+<p><strong>Composable type constraint</strong> library</p>
+<pre data-id="constaint-code"><code class="scala" data-line-numbers="8|9-12">final class Positive
 // ...
 
 val x: Int :| Positive = 1
-val y: Int :| Positive = -1
+//Compile-time error: Should be strictly positive
+val y: Int :| Positive = -1 
 
 val foo: Int :| Positive :| Less[42] = 1
 //Compile-time error: Should be strictly positive
 val bar: Int :| Positive :| Less[42] = -1 
 //Compile-time error: Should be less than 42
-val baz: Int :| Positive :| Less[42] = 100
-</code></pre>
-</div>
-</div>
-<div class="faded" data-id="creator">
-<p>Created in Scala 3 <span class="devicon-scala-plain colored"></span>
-by Raphaël Fromentin</p>
-</div>
-<div class="faded" data-id="binding">
-<p>It enables binding constraints to a specific type</p>
-</div>
+val baz: Int :| Positive :| Less[42] = 100</code></pre>
 </section>
 <section id="composition" class="slide level2">
 <h2>Composition</h2>
@@ -624,7 +594,7 @@ https://iron.rlemaitre.com</figcaption>
         // Time before the cursor is hidden (in ms)
         hideCursorTime: 5000,
         // Transition style
-        transition: 'slide', // none/fade/slide/convex/concave/zoom
+        transition: 'none', // none/fade/slide/convex/concave/zoom
         // Transition speed
         transitionSpeed: 'default', // default/fast/slow
         // Transition style for full page slide backgrounds
