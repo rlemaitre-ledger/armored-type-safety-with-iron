@@ -33,7 +33,7 @@ date: November 28th, 2023
 
 Suppose you find this code in your codebase
 
-```scala {data-id="code-model" data-line-numbers="1-8"}
+```scala {data-id="code-model" data-line-numbers=""}
 case class IBAN(
   countryCode: String,
   checkDigits: String,
@@ -48,30 +48,45 @@ case class IBAN(
 
 This looks good
 
-```scala {data-id="code-model" data-line-numbers="1"}
-val iban = IBAN("FR", "14", "20041", "01005", "0500013M026", "06")
+```scala {data-id="code-model" data-line-numbers=""}
+val iban = IBAN(
+  "FR",
+  "14",
+  "20041",
+  "01005",
+  "0500013M026",
+  "06"
+)
 ```
 
 ## {data-auto-animate=""}
 
 Until you find something like this
 
-```scala {data-id="code-model" data-line-numbers="3"}
-val iban = IBAN("FR", "14", "20041", "01005", "0500013M026", "06")
-...
-val shuffled = IBAN("0500013M026", "FR", "06", "14", "20041", "01005")
+```scala {data-id="code-model" data-line-numbers=""}
+val shuffled = IBAN(
+  "0500013M026",
+  "FR",
+  "06",
+  "14",
+  "20041",
+  "01005"
+)
 ```
 
 ## {data-auto-animate=""}
 
-Then, you even try
+Then, you see this 🤯
 
-```scala {data-id="code-model" data-line-numbers="5"}
-val iban = IBAN("FR", "14", "20041", "01005", "0500013M026", "06")
-...
-val shuffled = IBAN("0500013M026", "FR", "06", "14", "20041", "01005")
-...
-val wtf = IBAN("🇫🇷", "✅", "🏦", "🌳", "🧾", "🤡")
+```scala {data-id="code-model" data-line-numbers=""}
+val wtf = IBAN(
+  "🇫🇷",
+  "✅",
+  "🏦",
+  "🌳",
+  "🧾",
+  "🤡"
+)
 ```
 
 # How can we do better?
@@ -321,7 +336,7 @@ In production
 ## Feedback loop {data-auto-animate=""}
 
 :::: {.r-stack}
-::: {data-id="box1" .circle style="background: #ca3c66; width: 700px; height: 700px;"}
+::: {data-id="box1" .circle style="border: 4px dotted #ca3c66; background: transparent; width: 700px; height: 700px;"}
 :::
 ::: {data-id="box2" .circle style="background: #db6a8f; width: 600px; height: 600px;"}
 :::
@@ -332,11 +347,11 @@ In staging
 ## Feedback loop {data-auto-animate=""}
 
 :::: {.r-stack}
-::: {data-id="box1" .circle style="background: #ca3c66; width: 700px; height: 700px;"}
+::: {data-id="box1" .circle .faded style="border: 4px dotted #ca3c66; background: transparent; width: 700px; height: 700px;"}
 :::
-::: {data-id="box2" .circle style="background: #db6a8f; width: 600px; height: 600px;"}
+::: {data-id="box2" .circle .faded style="border: 4px dotted #db6a8f; background: transparent; width: 600px; height: 600px;"}
 :::
-::: {data-id="box3" .circle style="background: #e8aabe; width: 400px; height: 400px;"}
+::: {data-id="box3" .circle style="background: #e8aabe; width: 300px; height: 300px;"}
 :::
 ::::
 
@@ -345,11 +360,11 @@ Integration tests
 ## Feedback loop {data-auto-animate=""}
 
 :::: {.r-stack}
-::: {data-id="box1" .circle style="background: #ca3c66; width: 700px; height: 700px;"}
+::: {data-id="box1" .circle .faded style="border: 4px dotted #ca3c66; background: transparent; width: 700px; height: 700px;"}
 :::
-::: {data-id="box2" .circle style="background: #db6a8f; width: 600px; height: 600px;"}
+::: {data-id="box2" .circle .faded style="border: 4px dotted #db6a8f; background: transparent; width: 600px; height: 600px;"}
 :::
-::: {data-id="box3" .circle style="background: #e8aabe; width: 400px; height: 400px;"}
+::: {data-id="box3" .circle .faded style="border: 4px dotted #e8aabe; background: transparent; width: 300px; height: 300px;"}
 :::
 ::: {data-id="box4" .circle style="background: #a7e0e0; width: 200px; height: 200px;"}
 :::
@@ -360,15 +375,15 @@ Unit tests
 ## Feedback loop {data-auto-animate=""}
 
 :::: {.r-stack}
-::: {data-id="box1" .circle style="background: #ca3c66; width: 700px; height: 700px;"}
+::: {data-id="box1" .circle style="border: 4px dotted #ca3c66; background: transparent; width: 700px; height: 700px;"}
 :::
-::: {data-id="box2" .circle style="background: #db6a8f; width: 600px; height: 600px;"}
+::: {data-id="box2" .circle style="border: 4px dotted #db6a8f; background: transparent; width: 600px; height: 600px;"}
 :::
-::: {data-id="box3" .circle style="background: #e8aabe; width: 400px; height: 400px;"}
+::: {data-id="box3" .circle style="border: 4px dotted #e8aabe; background: transparent; width: 300px; height: 300px;"}
 :::
-::: {data-id="box4" .circle style="background: #a7e0e0; width: 200px; height: 200px;"}
+::: {data-id="box4" .circle style="border: 4px dotted #a7e0e0; background: transparent; width: 200px; height: 200px;"}
 :::
-::: {data-id="box5" .circle style="background: #4aa3a2; width: 100px; height: 100px;"}
+::: {data-id="box5" .circle style="background: #4aa3a2; width: 50px; height: 50px;"}
 :::
 ::::
 
@@ -392,33 +407,61 @@ It enables binding constraints to a specific type
 
 Composable type **constraint** library
 
-```scala {data-id="code" data-line-numbers=""}
+```scala {data-id="code" data-line-numbers="1|3-7"}
 final class Positive
+
+import io.github.iltotore.iron.*
+
+given Constraint[Int, Positive] with
+  override inline def test(value: Int): Boolean = value > 0
+  override inline def message: String = "Should be strictly positive"
+
+
+
+
+//
 ```
+
+::: {.faded}
 Created in Scala 3 []{.devicon-scala-plain .colored} by Raphaël Fromentin
 
 It enables binding constraints to a specific type
-
-## What is Iron? {data-auto-animate=""}
-
-Composable type **constraint** library
-
-```scala {data-id="code" data-line-numbers="2-5"}
-final class Positive
-import io.github.iltotore.iron.*
-given Constraint[Int, Positive] with
-  override inline def test(value: Int): Boolean = value > 0
-  override inline def message: String = "Should be strictly positive"
-
-```
+:::
 
 ## What is Iron? {data-auto-animate=""}
 
 Composable **type constraint** library
 
-```scala {data-id="code" data-line-numbers="7|8-9"}
+```scala {data-id="code" data-line-numbers="9"}
 final class Positive
+
 import io.github.iltotore.iron.*
+
+given Constraint[Int, Positive] with
+  override inline def test(value: Int): Boolean = value > 0
+  override inline def message: String = "Should be strictly positive"
+
+val x: Int :| Positive = 1
+
+
+//
+```
+
+::: {.faded}
+Created in Scala 3 []{.devicon-scala-plain .colored} by Raphaël Fromentin
+
+It enables binding constraints to a specific type
+:::
+
+## What is Iron? {data-auto-animate=""}
+
+Composable **type constraint** library
+
+```scala {data-id="code" data-line-numbers="10-11"}
+final class Positive
+
+import io.github.iltotore.iron.*
+
 given Constraint[Int, Positive] with
   override inline def test(value: Int): Boolean = value > 0
   override inline def message: String = "Should be strictly positive"
@@ -426,31 +469,73 @@ given Constraint[Int, Positive] with
 val x: Int :| Positive = 1
 //Compile-time error: Should be strictly positive
 val y: Int :| Positive = -1 
-
+//
 ```
 
-## What is Iron? {data-auto-animate=""}
+::: {.faded}
+Created in Scala 3 []{.devicon-scala-plain .colored} by Raphaël Fromentin
 
-Composable **type constraint** library
-
-```scala {data-id="constaint-code" data-line-numbers="7|8-9"}
-final class Positive
-// ...
-
-val x: Int :| Positive = 1
-//Compile-time error: Should be strictly positive
-val y: Int :| Positive = -1 
-
-```
+It enables binding constraints to a specific type
+:::
 
 ## What is Iron? {data-auto-animate=""}
 
 **Composable type constraint** library
 
-```scala {data-id="constaint-code" data-line-numbers="8|9-12"}
+```scala {data-id="constaint-code" data-line-numbers="7"}
 final class Positive
 // ...
+val x: Int :| Positive = 1
+//Compile-time error: Should be strictly positive
+val y: Int :| Positive = -1 
 
+val foo: Int :| Positive :| Less[42] = 1
+
+
+
+
+//
+```
+
+::: {.faded}
+Created in Scala 3 []{.devicon-scala-plain .colored} by Raphaël Fromentin
+
+It enables binding constraints to a specific type
+:::
+
+## What is Iron? {data-auto-animate=""}
+
+**Composable type constraint** library
+
+```scala {data-id="constaint-code" data-line-numbers="8-9"}
+final class Positive
+// ...
+val x: Int :| Positive = 1
+//Compile-time error: Should be strictly positive
+val y: Int :| Positive = -1 
+
+val foo: Int :| Positive :| Less[42] = 1
+//Compile-time error: Should be strictly positive
+val bar: Int :| Positive :| Less[42] = -1 
+
+
+//
+```
+
+::: {.faded}
+Created in Scala 3 []{.devicon-scala-plain .colored} by Raphaël Fromentin
+
+It enables binding constraints to a specific type
+:::
+
+
+## What is Iron? {data-auto-animate=""}
+
+**Composable type constraint** library
+
+```scala {data-id="constaint-code" data-line-numbers="10-11"}
+final class Positive
+// ...
 val x: Int :| Positive = 1
 //Compile-time error: Should be strictly positive
 val y: Int :| Positive = -1 
@@ -459,11 +544,15 @@ val foo: Int :| Positive :| Less[42] = 1
 //Compile-time error: Should be strictly positive
 val bar: Int :| Positive :| Less[42] = -1 
 //Compile-time error: Should be less than 42
-val baz: Int :| Positive :| Less[42] = 100
-
+val baz: Int :| Positive :| Less[42] = 123
+//
 ```
 
-## Composition
+::: {.faded}
+Created in Scala 3 []{.devicon-scala-plain .colored} by Raphaël Fromentin
+
+It enables binding constraints to a specific type
+:::
 
 ## Validation
 
