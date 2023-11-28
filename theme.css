@@ -38,6 +38,7 @@ section.has-light-background h6 {
   --r-heading4-size: 1em;
   --r-code-font: 'Fira Code', monospace;
   --r-code-font-size: 0.90em;
+  --r-code-font-weight: 100;
   --r-link-color: #3d92aa;
   --r-link-color-dark: #2e6f81;
   --r-link-color-hover: #4EB9DE;
@@ -218,6 +219,7 @@ section.has-light-background h6 {
   text-align: left;
   font-size: var(--r-code-font-size);
   font-family: var(--r-code-font);
+  font-weight: var(--r-code-font-weight);
   line-height: 1.2em;
   word-wrap: break-word;
   box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.15);
@@ -552,4 +554,91 @@ img.qrcode {
 }
 .details {
   font-size: 100%;
+}
+
+/* highlightjs theme */
+/* Tomorrow Night Theme */
+/* https://jmblog.github.io/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+/* https://jmblog.github.io/color-themes-for-google-code-highlightjs */
+.tomorrow-comment,
+pre .comment,
+pre .title {
+  color: #969896;
+}
+
+.tomorrow-red,
+pre .variable,
+pre .attribute,
+pre .tag,
+pre .regexp,
+pre .ruby .constant,
+pre .xml .tag .title,
+pre .xml .pi,
+pre .xml .doctype,
+pre .html .doctype,
+pre .css .id,
+pre .css .class,
+pre .css .pseudo {
+  color: #cc6666;
+}
+
+.tomorrow-orange,
+pre .number,
+pre .preprocessor,
+pre .built_in,
+pre .literal,
+pre .params,
+pre .constant {
+  color: #de935f;
+}
+
+.tomorrow-yellow,
+pre .class,
+pre .ruby .class .title,
+pre .css .rules .attribute {
+  color: #f0c674;
+}
+
+.tomorrow-green,
+pre .string,
+pre .value,
+pre .inheritance,
+pre .header,
+pre .ruby .symbol,
+pre .xml .cdata {
+  color: #b5bd68;
+}
+
+.tomorrow-aqua,
+pre .css .hexcolor {
+  color: #8abeb7;
+}
+
+.tomorrow-blue,
+pre .function,
+pre .python .decorator,
+pre .python .title,
+pre .ruby .function .title,
+pre .ruby .title .keyword,
+pre .perl .sub,
+pre .javascript .title,
+pre .coffeescript .title {
+  color: #81a2be;
+}
+
+.tomorrow-purple,
+pre .keyword,
+pre .javascript .function {
+  color: #b294bb;
+}
+
+pre code {
+  display: block;
+  background: #1d1f21;
+  color: #c5c8c6;
+  font-family: Menlo, Monaco, Consolas, monospace;
+  line-height: 1.5;
+  border: 1px solid #ccc;
+  padding: 10px;
 }

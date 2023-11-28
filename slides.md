@@ -314,116 +314,73 @@ Compilation time
 
 # Meet Iron
 
-## What is Iron? {data-id="what-title"}
+## What is Iron? {auto-animate=true auto-animate-easing=ease-in-out}
 
-::: {data-id="constraint"}
+## What is Iron? {auto-animate=true auto-animate-easing=ease-in-out}
+
 Composable type constraint library
-:::
 
-::: {data-id="creator"}
 Created in Scala 3 []{.devicon-scala-plain .colored} by Raphaël Fromentin
-:::
 
-::: {data-id="binding"}
 It enables binding constraints to a specific type
-:::
 
-## [What is Iron?]{.faded} {data-id="what-title"}
+## What is Iron? {auto-animate=true auto-animate-easing=ease-in-out}
 
-:::: {data-id="constraint" style="font-size: 150%"}
-Composable type [constraint]{style="font-size: 200%;"} library
+Composable type **constraint** library
 
-::: {style="font-size: var(--r-main-font-size);"}
-
-```scala
+```scala {data-id="constaint-code" data-line-numbers="1"}
 final class Positive
-
-import io.github.iltotore.iron.*
-
-given Constraint[Int, Positive] with
-
-  override inline def test(value: Int): Boolean = value > 0
-
-  override inline def message: String = "Should be strictly positive"
-
 ```
-:::
-::::
-
-::: {data-id="creator" .faded}
 Created in Scala 3 []{.devicon-scala-plain .colored} by Raphaël Fromentin
-:::
 
-::: {data-id="binding" .faded}
 It enables binding constraints to a specific type
-:::
 
-## [What is Iron?]{.faded} {data-id="what-title"}
+## What is Iron? {auto-animate=true auto-animate-easing=ease-in-out}
 
-:::: {data-id="constraint" style="font-size: 150%"}
-Composable [type constraint]{style="font-size: 200%;"} library
+Composable type **constraint** library
 
-::: {style="font-size: var(--r-main-font-size);"}
-
-```scala{data-line-numbers="11|12--13"}
+```scala {data-id="constaint-code" data-line-numbers="2-5"}
 final class Positive
-
 import io.github.iltotore.iron.*
-
 given Constraint[Int, Positive] with
-
   override inline def test(value: Int): Boolean = value > 0
+  override inline def message: String = "Should be strictly positive"
+```
 
+## What is Iron? {auto-animate=true auto-animate-easing=ease-in-out}
+
+Composable **type constraint** library
+
+```scala {data-id="constaint-code" data-line-numbers="7|8-9"}
+final class Positive
+import io.github.iltotore.iron.*
+given Constraint[Int, Positive] with
+  override inline def test(value: Int): Boolean = value > 0
   override inline def message: String = "Should be strictly positive"
 
 val x: Int :| Positive = 1
 //Compile-time error: Should be strictly positive
 val y: Int :| Positive = -1 
 ```
-:::
-::::
 
-::: {data-id="creator" .faded}
-Created in Scala 3 []{.devicon-scala-plain .colored} by Raphaël Fromentin
-:::
+## What is Iron? {auto-animate=true auto-animate-easing=ease-in-out}
 
-::: {data-id="binding" .faded}
-It enables binding constraints to a specific type
-:::
+**Composable type constraint** library
 
-## [What is Iron?]{.faded} {data-id="what-title"}
-
-:::: {data-id="constraint" style="font-size: 150%"}
-[Composable type constraint]{style="font-size: 200%;"} library
-
-::: {style="font-size: var(--r-main-font-size);"}
-
-```scala{data-line-numbers="9-|10-13"}
+```scala {data-id="constaint-code" data-line-numbers="8|9-12"}
 final class Positive
-final class Less[V]
-
 // ...
 
 val x: Int :| Positive = 1
-val y: Int :| Positive = -1
+//Compile-time error: Should be strictly positive
+val y: Int :| Positive = -1 
 
 val foo: Int :| Positive :| Less[42] = 1
 //Compile-time error: Should be strictly positive
 val bar: Int :| Positive :| Less[42] = -1 
 //Compile-time error: Should be less than 42
 val baz: Int :| Positive :| Less[42] = 100
-
 ```
-:::
-::::
-
-::: {data-id="creator" .faded}
-Created in Scala 3 []{.devicon-scala-plain .colored} by Raphaël Fromentin
-:::
-
-::: {data-id="binding" .faded}
-It enables binding constraints to a specific type
-:::
 
 ## Composition
 

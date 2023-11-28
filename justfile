@@ -24,6 +24,7 @@ build:
     --template=template.html \
     --variable=width:1920 \
     --variable=height:1080 \
+    --variable=transition:none \
     --variable=highlightjs:true \
     --variable=highlightjs-theme:monokai \
     --variable=navigationMode:linear \
