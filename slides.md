@@ -639,6 +639,27 @@ Functional
 
 No implementation leak
 
+```scala
+opaque type Positive <: Int  = Int :| Greater[0]
+
+object Positive extends RefinedTypeOps[Int, Greater[0], Positive]
+```
+
+## Constrained Opaque Types
+
+Constraint factorization 
+
+```scala  
+private type SatsConstraint = 
+  GreaterEqual[0] & LessEqual[100000000 * 21000000]
+
+opaque type Sats <: Long = Long :| SatsConstraint
+
+object Sats extends RefinedTypeOps[Long, SatsConstraint, Sats]
+```
+
+## Before / After
+
 # Iron ![](images/scalalove-logo.svg){.logo} Ecosystem
 
 ## Refinement outputs
