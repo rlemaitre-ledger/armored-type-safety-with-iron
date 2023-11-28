@@ -539,12 +539,12 @@ def createIBAN(  countryCode: String,
   nationalCheckDigit: String
 ): Either[String, User] =
   for
-    ctr <- countryCode.refineEither[Alphanumeric]
-    chk <- countryCode.refineEither[Alphanumeric]
-    ban <- countryCode.refineEither[Alphanumeric]
-    bra <- countryCode.refineEither[Alphanumeric]
-    acc <- countryCode.refineEither[Alphanumeric]
-    nck <- countryCode.refineEither[Alphanumeric]
+    ctr <- countryCode.refineEither[Alphanumeric & Length[StrictEqual[2]]]
+    chk <- countryCode.refineEither[Alphanumeric & Length[StrictEqual[2]]]
+    ban <- countryCode.refineEither[Alphanumeric & Length[StrictEqual[5]]]
+    bra <- countryCode.refineEither[Alphanumeric & Length[StrictEqual[5]]]
+    acc <- countryCode.refineEither[Alphanumeric & Length[StrictEqual[11]]]
+    nck <- countryCode.refineEither[Alphanumeric & Length[StrictEqual[2]]]
   yield IBAN(ctr, chk, ban, bra, acc, nck)
 ```
 
