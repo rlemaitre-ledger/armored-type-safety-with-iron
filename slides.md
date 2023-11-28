@@ -29,10 +29,11 @@ date: November 28th, 2023
 
 # Rationale
 
-##
+## {data-auto-animate=""}
 
 Suppose you find this code in your codebase
-```scala
+
+```scala {data-id="code-model" data-line-numbers="1-8"}
 case class IBAN(
   countryCode: String,
   checkDigits: String,
@@ -43,27 +44,33 @@ case class IBAN(
 )
 ```
 
-##
+## {data-auto-animate=""}
 
 This looks good
 
-```scala
+```scala {data-id="code-model" data-line-numbers="1"}
 val iban = IBAN("FR", "14", "20041", "01005", "0500013M026", "06")
 ```
 
-. . .
+## {data-auto-animate=""}
 
 Until you find something like this
 
-```scala
+```scala {data-id="code-model" data-line-numbers="3"}
+val iban = IBAN("FR", "14", "20041", "01005", "0500013M026", "06")
+...
 val shuffled = IBAN("0500013M026", "FR", "06", "14", "20041", "01005")
 ```
 
-. . .
+## {data-auto-animate=""}
 
 Then, you even try
 
-```scala
+```scala {data-id="code-model" data-line-numbers="5"}
+val iban = IBAN("FR", "14", "20041", "01005", "0500013M026", "06")
+...
+val shuffled = IBAN("0500013M026", "FR", "06", "14", "20041", "01005")
+...
 val wtf = IBAN("🇫🇷", "✅", "🏦", "🌳", "🧾", "🤡")
 ```
 
@@ -109,9 +116,9 @@ case class IBAN(
 
 ## So, maybe with value classes?
 
----
+##
 
-```scala
+```scala   {data-id="code" data-line-numbers=""}
 case class CountryCode(value: String) extends AnyVal
 
 case class CheckDigits(value: String) extends AnyVal
@@ -125,11 +132,11 @@ case class AccountNumber(value: String) extends AnyVal
 case class NationalCheckDigit(value: String) extends AnyVal
 ```
 
----
+## {data-auto-animate=""}
 
 This looks good
 
-```scala
+```scala {data-id="code" data-line-numbers=""}
 val iban = IBAN(
   CountryCode("FR"),
   CheckDigits("14"),
@@ -140,9 +147,11 @@ val iban = IBAN(
 )
 ```
 
+## {data-auto-animate=""}
+
 And this cannot compile anymore
 
-```scala {.scala .compilation-error}
+```scala {data-id="code" data-line-numbers=""}
 val shuffled = IBAN(
   AccountNumber("0500013M026"),
   CountryCode("FR"),
@@ -157,7 +166,7 @@ val shuffled = IBAN(
 
 But this one still compiles
 
-```scala
+```scala {data-id="code" data-line-numbers=""}
 val wtf = IBAN(
   CountryCode("🇫🇷"),
   CheckDigits("✅"),
@@ -296,11 +305,11 @@ object BranchCode:
       FormatError("Branch code must be 5 characters"))
 ```
 
-## Feedback loop {auto-animate=true auto-animate-easing=ease-in-out}
+## Feedback loop {data-auto-animate=""}
 
 How much time do we need to find a bug?
 
-## Feedback loop {auto-animate=true auto-animate-easing=ease-in-out}
+## Feedback loop {data-auto-animate=""}
 
 :::: {.r-stack}
 ::: {data-id="box1" .circle style="background: #ca3c66; width: 700px; height: 700px;"}
@@ -309,7 +318,7 @@ How much time do we need to find a bug?
 
 In production
 
-## Feedback loop {auto-animate=true auto-animate-easing=ease-in-out}
+## Feedback loop {data-auto-animate=""}
 
 :::: {.r-stack}
 ::: {data-id="box1" .circle style="background: #ca3c66; width: 700px; height: 700px;"}
@@ -320,7 +329,7 @@ In production
 
 In staging
 
-## Feedback loop {auto-animate=true auto-animate-easing=ease-in-out}
+## Feedback loop {data-auto-animate=""}
 
 :::: {.r-stack}
 ::: {data-id="box1" .circle style="background: #ca3c66; width: 700px; height: 700px;"}
@@ -333,7 +342,7 @@ In staging
 
 Integration tests
 
-## Feedback loop {auto-animate=true auto-animate-easing=ease-in-out}
+## Feedback loop {data-auto-animate=""}
 
 :::: {.r-stack}
 ::: {data-id="box1" .circle style="background: #ca3c66; width: 700px; height: 700px;"}
@@ -348,7 +357,7 @@ Integration tests
 
 Unit tests
 
-## Feedback loop {auto-animate=true auto-animate-easing=ease-in-out}
+## Feedback loop {data-auto-animate=""}
 
 :::: {.r-stack}
 ::: {data-id="box1" .circle style="background: #ca3c66; width: 700px; height: 700px;"}
@@ -369,9 +378,9 @@ Compilation time
 
 # Meet Iron
 
-## What is Iron? {auto-animate=true auto-animate-easing=ease-in-out}
+## What is Iron? {data-auto-animate=""}
 
-## What is Iron? {auto-animate=true auto-animate-easing=ease-in-out}
+## What is Iron? {data-auto-animate=""}
 
 Composable type constraint library
 
@@ -379,22 +388,22 @@ Created in Scala 3 []{.devicon-scala-plain .colored} by Raphaël Fromentin
 
 It enables binding constraints to a specific type
 
-## What is Iron? {auto-animate=true auto-animate-easing=ease-in-out}
+## What is Iron? {data-auto-animate=""}
 
 Composable type **constraint** library
 
-```scala {data-id="constaint-code" data-line-numbers="1"}
+```scala {data-id="code" data-line-numbers=""}
 final class Positive
 ```
 Created in Scala 3 []{.devicon-scala-plain .colored} by Raphaël Fromentin
 
 It enables binding constraints to a specific type
 
-## What is Iron? {auto-animate=true auto-animate-easing=ease-in-out}
+## What is Iron? {data-auto-animate=""}
 
 Composable type **constraint** library
 
-```scala {data-id="constaint-code" data-line-numbers="2-5"}
+```scala {data-id="code" data-line-numbers="2-5"}
 final class Positive
 import io.github.iltotore.iron.*
 given Constraint[Int, Positive] with
@@ -403,11 +412,11 @@ given Constraint[Int, Positive] with
 
 ```
 
-## What is Iron? {auto-animate=true auto-animate-easing=ease-in-out}
+## What is Iron? {data-auto-animate=""}
 
 Composable **type constraint** library
 
-```scala {data-id="constaint-code" data-line-numbers="7|8-9"}
+```scala {data-id="code" data-line-numbers="7|8-9"}
 final class Positive
 import io.github.iltotore.iron.*
 given Constraint[Int, Positive] with
@@ -420,7 +429,7 @@ val y: Int :| Positive = -1
 
 ```
 
-## What is Iron? {auto-animate=true auto-animate-easing=ease-in-out}
+## What is Iron? {data-auto-animate=""}
 
 Composable **type constraint** library
 
@@ -434,7 +443,7 @@ val y: Int :| Positive = -1
 
 ```
 
-## What is Iron? {auto-animate=true auto-animate-easing=ease-in-out}
+## What is Iron? {data-auto-animate=""}
 
 **Composable type constraint** library
 
