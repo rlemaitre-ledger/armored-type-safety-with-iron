@@ -605,12 +605,12 @@ class="slide level2" data-auto-animate="">
   nationalCheckDigit: String
 ): Either[String, User] =
   for
-    ctr &lt;- countryCode.refineEither[Alphanumeric & Length[StrictEqual[2]]]
-    chk &lt;- countryCode.refineEither[Alphanumeric & Length[StrictEqual[2]]]
-    ban &lt;- countryCode.refineEither[Alphanumeric & Length[StrictEqual[5]]]
-    bra &lt;- countryCode.refineEither[Alphanumeric & Length[StrictEqual[5]]]
-    acc &lt;- countryCode.refineEither[Alphanumeric & Length[StrictEqual[11]]]
-    nck &lt;- countryCode.refineEither[Alphanumeric & Length[StrictEqual[2]]]
+    ctr &lt;- countryCode.refineEither[Alphanumeric & Length[Equals[ 2]]]
+    chk &lt;- countryCode.refineEither[Alphanumeric & Length[Equals[ 2]]]
+    ban &lt;- countryCode.refineEither[Alphanumeric & Length[Equals[ 5]]]
+    bra &lt;- countryCode.refineEither[Alphanumeric & Length[Equals[ 5]]]
+    acc &lt;- countryCode.refineEither[Alphanumeric & Length[Equals[11]]]
+    nck &lt;- countryCode.refineEither[Alphanumeric & Length[Equals[ 2]]]
   yield IBAN(ctr, chk, ban, bra, acc, nck)</code></pre>
 <aside class="notes">
 <p>Functional</p>
