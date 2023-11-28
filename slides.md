@@ -333,87 +333,6 @@ object BranchCode:
 |  VC + Either  |    ✅    |    ✅    |   ✅   |   ✅   |      ❌      |    ❌    |
 | Opaque types  |    ✅    |    ✅    |   ✅   |   ✅   |      ✅      |    ❌    |
 
-## Feedback loop {data-auto-animate=""}
-
-How much time do we need to find a bug?
-
-## Feedback loop {data-auto-animate=""}
-
-:::: {.r-stack}
-::: {data-id="box1" .circle style="background: #ca3c66; width: 700px; height: 700px;"}
-:::
-::::
-
-In production
-
-## Feedback loop {data-auto-animate=""}
-
-:::: {.r-stack}
-::: {data-id="box1" .circle style="border: 4px dotted #ca3c66; background: transparent; width: 700px; height: 700px;"}
-:::
-::: {data-id="box2" .circle style="background: #db6a8f; width: 600px; height: 600px;"}
-:::
-::::
-
-In staging
-
-## Feedback loop {data-auto-animate=""}
-
-:::: {.r-stack}
-::: {data-id="box1" .circle .faded style="border: 4px dotted #ca3c66; background: transparent; width: 700px; height: 700px;"}
-:::
-::: {data-id="box2" .circle .faded style="border: 4px dotted #db6a8f; background: transparent; width: 600px; height: 600px;"}
-:::
-::: {data-id="box3" .circle style="background: #e8aabe; width: 300px; height: 300px;"}
-:::
-::::
-
-Integration tests
-
-## Feedback loop {data-auto-animate=""}
-
-:::: {.r-stack}
-::: {data-id="box1" .circle .faded style="border: 4px dotted #ca3c66; background: transparent; width: 700px; height: 700px;"}
-:::
-::: {data-id="box2" .circle .faded style="border: 4px dotted #db6a8f; background: transparent; width: 600px; height: 600px;"}
-:::
-::: {data-id="box3" .circle .faded style="border: 4px dotted #e8aabe; background: transparent; width: 300px; height: 300px;"}
-:::
-::: {data-id="box4" .circle style="background: #a7e0e0; width: 200px; height: 200px;"}
-:::
-::::
-
-Unit tests
-
-## Feedback loop {data-auto-animate=""}
-
-:::: {.r-stack}
-::: {data-id="box1" .circle style="border: 4px dotted #ca3c66; background: transparent; width: 700px; height: 700px;"}
-:::
-::: {data-id="box2" .circle style="border: 4px dotted #db6a8f; background: transparent; width: 600px; height: 600px;"}
-:::
-::: {data-id="box3" .circle style="border: 4px dotted #e8aabe; background: transparent; width: 300px; height: 300px;"}
-:::
-::: {data-id="box4" .circle style="border: 4px dotted #a7e0e0; background: transparent; width: 200px; height: 200px;"}
-:::
-::: {data-id="box5" .circle style="background: #4aa3a2; width: 50px; height: 50px;"}
-:::
-::::
-
-Compilation time
-
-## Summary
-
-|               | Legible | Ordered | Valid | Pure  | Performance | Concise | Compiles |
-| :-----------: | :-----: | :-----: | :---: | :---: | :---------: | :-----: | :------: |
-|  Raw Classes  |    ❌    |    ❌    |   ❌   |   ❌   |      ❌      |    ❌    |    ❌     |
-| Type Aliases  |    ✅    |    ❌    |   ❌   |   ❌   |      ❌      |    ❌    |    ❌     |
-| Value Classes |    ✅    |    ✅    |   ❌   |   ❌   |      ❌      |    ❌    |    ❌     |
-| VC + Require  |    ✅    |    ✅    |   ✅   |   ❌   |      ❌      |    ❌    |    ❌     |
-|  VC + Either  |    ✅    |    ✅    |   ✅   |   ✅   |      ❌      |    ❌    |    ❌     |
-| Opaque types  |    ✅    |    ✅    |   ✅   |   ✅   |      ✅      |    ❌    |    ❌     |
-|   **Iron**    |    ✅    |    ✅    |   ✅   |   ✅   |      ✅      |    ✅    |    ✅     |
-
 # Something smarter and with less boilerplate?
 
 # 
@@ -658,7 +577,87 @@ opaque type Sats <: Long = Long :| SatsConstraint
 object Sats extends RefinedTypeOps[Long, SatsConstraint, Sats]
 ```
 
-## Before / After
+## Feedback loop {data-auto-animate=""}
+
+How much time do we need to find a bug?
+
+## Feedback loop {data-auto-animate=""}
+
+:::: {.r-stack}
+::: {data-id="box1" .circle style="background: #ca3c66; width: 700px; height: 700px;"}
+:::
+::::
+
+In production
+
+## Feedback loop {data-auto-animate=""}
+
+:::: {.r-stack}
+::: {data-id="box1" .circle style="border: 4px dotted #ca3c66; background: transparent; width: 700px; height: 700px;"}
+:::
+::: {data-id="box2" .circle style="background: #db6a8f; width: 600px; height: 600px;"}
+:::
+::::
+
+In staging
+
+## Feedback loop {data-auto-animate=""}
+
+:::: {.r-stack}
+::: {data-id="box1" .circle .faded style="border: 4px dotted #ca3c66; background: transparent; width: 700px; height: 700px;"}
+:::
+::: {data-id="box2" .circle .faded style="border: 4px dotted #db6a8f; background: transparent; width: 600px; height: 600px;"}
+:::
+::: {data-id="box3" .circle style="background: #e8aabe; width: 300px; height: 300px;"}
+:::
+::::
+
+Integration tests
+
+## Feedback loop {data-auto-animate=""}
+
+:::: {.r-stack}
+::: {data-id="box1" .circle .faded style="border: 4px dotted #ca3c66; background: transparent; width: 700px; height: 700px;"}
+:::
+::: {data-id="box2" .circle .faded style="border: 4px dotted #db6a8f; background: transparent; width: 600px; height: 600px;"}
+:::
+::: {data-id="box3" .circle .faded style="border: 4px dotted #e8aabe; background: transparent; width: 300px; height: 300px;"}
+:::
+::: {data-id="box4" .circle style="background: #a7e0e0; width: 200px; height: 200px;"}
+:::
+::::
+
+Unit tests
+
+## Feedback loop {data-auto-animate=""}
+
+:::: {.r-stack}
+::: {data-id="box1" .circle style="border: 4px dotted #ca3c66; background: transparent; width: 700px; height: 700px;"}
+:::
+::: {data-id="box2" .circle style="border: 4px dotted #db6a8f; background: transparent; width: 600px; height: 600px;"}
+:::
+::: {data-id="box3" .circle style="border: 4px dotted #e8aabe; background: transparent; width: 300px; height: 300px;"}
+:::
+::: {data-id="box4" .circle style="border: 4px dotted #a7e0e0; background: transparent; width: 200px; height: 200px;"}
+:::
+::: {data-id="box5" .circle style="background: #4aa3a2; width: 50px; height: 50px;"}
+:::
+::::
+
+Compilation time
+
+## Summary
+
+|               | Legible | Ordered | Valid | Pure  | Performance | Concise | Compiles |
+| :-----------: | :-----: | :-----: | :---: | :---: | :---------: | :-----: | :------: |
+|  Raw Classes  |    ❌    |    ❌    |   ❌   |   ❌   |      ❌      |    ❌    |    ❌     |
+| Type Aliases  |    ✅    |    ❌    |   ❌   |   ❌   |      ❌      |    ❌    |    ❌     |
+| Value Classes |    ✅    |    ✅    |   ❌   |   ❌   |      ❌      |    ❌    |    ❌     |
+| VC + Require  |    ✅    |    ✅    |   ✅   |   ❌   |      ❌      |    ❌    |    ❌     |
+|  VC + Either  |    ✅    |    ✅    |   ✅   |   ✅   |      ❌      |    ❌    |    ❌     |
+| Opaque types  |    ✅    |    ✅    |   ✅   |   ✅   |      ✅      |    ❌    |    ❌     |
+|   **Iron**    |    ✅    |    ✅    |   ✅   |   ✅   |      ✅      |    ✅    |    ✅     |
+
 
 # Iron ![](images/scalalove-logo.svg){.logo} Ecosystem
 
