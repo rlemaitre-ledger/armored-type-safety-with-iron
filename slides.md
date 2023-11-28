@@ -158,13 +158,19 @@ val shuffled = IBAN(
 But this one still compiles
 
 ```scala
-val wtf = IBAN("🇫🇷", "✅", "🏦", "🌳", "🧾", "🤡")
+val wtf = IBAN(
+  CountryCode("🇫🇷"),
+  CheckDigits("✅"),
+  BankCode("🏦"),
+  BranchCode("🌳"),
+  AccountNumber("🧾"),
+  NationalCheckDigit("🤡")
+)
 ```
 
 ## Let's add validation
 
----
-
+##
 ```scala
 case class CountryCode(value: String) extends AnyVal:
   require(value.length == 2, "Country code must be 2 characters")
@@ -183,9 +189,57 @@ case class AccountNumber(value: String) extends AnyVal:
 
 case class NationalCheckDigit(value: String) extends AnyVal:
   require(value.length == 2, "National check digit must be 2 characters")
-
 ```
 
+## Let's validate without crashing
+
+##
+```scala
+case class FormatError(reason: String) 
+   extends Exception(reason), NoStackTrace
+```
+
+##
+```scala
+case class CountryCode(value: String) extends AnyVal:
+object CountryCode:
+  def parse(input: String): Either[FormatError, CountryCode] =
+    Either.cond(input.length == 2, CountryCode(input), 
+      FormatError("Country code must be 2 characters"))
+
+case class CheckDigits(value: String) extends AnyVal:
+object CheckDigits:
+  def parse(input: String): Either[FormatError, CheckDigits] =
+    Either.cond(input.length == 2, CheckDigits(input), 
+      FormatError("Check digits must be 2 characters"))
+
+case class BankCode(value: String) extends AnyVal:
+object BankCode:
+  def parse(input: String): Either[FormatError, BankCode] =
+    Either.cond(input.length == 5, BankCode(input),
+      FormatError("Bank code must be 5 characters"))
+```
+
+##
+```scala
+case class BranchCode(value: String) extends AnyVal:
+object BranchCode:
+  def parse(input: String): Either[FormatError, BranchCode] =
+    Either.cond(input.length == 5, BranchCode(input), 
+      FormatError("Branch code must be 5 characters"))
+
+case class AccountNumber(value: String) extends AnyVal:
+object AccountNumber:
+  def parse(input: String): Either[FormatError, AccountNumber] =
+    Either.cond(input.length == 11, AccountNumber(input), 
+      FormatError("Account number must be 11 characters"))
+
+case class NationalCheckDigit(value: String) extends AnyVal:
+object NationalCheckDigits:
+  def parse(input: String): Either[FormatError, NationalCheckDigits] =
+    Either.cond(input.length == 2, NationalCheckDigits(input), 
+      FormatError("Notional check digits must be 2 characters"))
+```
 
 ## Feedback loop {auto-animate=true auto-animate-easing=ease-in-out}
 
