@@ -25,14 +25,14 @@ build:
     --variable=width:1920 \
     --variable=height:1080 \
     --variable=highlightjs:true \
-    --variable=highlightjs-theme:zenburn \
+    --variable=highlightjs-theme:monokai \
     --variable=navigationMode:linear \
     --slide-level=2 \
     --output={{target}}/{{output}} \
       {{input}}
 
 watch:
-  fswatch -0 --one-per-batch --recursive --latency 5 {{input}} {{options}} {{theme}} {{template}} justfile fonts images | xargs -0 -I {} just build
+  fswatch -0 --one-per-batch --recursive --latency 2 {{input}} {{options}} {{theme}} {{template}} justfile fonts images | xargs -0 -I {} just build
 
 install_filters:
   curl -LSs {{release_url}}/download/lua-filters.tar.gz | tar --strip-components=1 --one-top-level={{pandoc_dir}} -zvxf -

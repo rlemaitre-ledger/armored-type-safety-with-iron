@@ -260,15 +260,116 @@ Compilation time
 
 # Meet Iron
 
-## What is Iron?
+## What is Iron? {data-id="what-title"}
 
-Type constraint library in Scala 3 []{.devicon-scala-plain .colored} created by Raphaël Fromentin.
+::: {data-id="constraint"}
+Composable type constraint library
+:::
 
-It enables binding constraints to a specific type.
+::: {data-id="creator"}
+Created in Scala 3 []{.devicon-scala-plain .colored} by Raphaël Fromentin
+:::
 
-## What is a constraint?
+::: {data-id="binding"}
+It enables binding constraints to a specific type
+:::
 
-## Constrained types
+## [What is Iron?]{.faded} {data-id="what-title"}
+
+:::: {data-id="constraint" style="font-size: 150%"}
+Composable type [constraint]{style="font-size: 200%;"} library
+
+::: {style="font-size: var(--r-main-font-size);"}
+
+```scala
+final class Positive
+
+import io.github.iltotore.iron.*
+
+given Constraint[Int, Positive] with
+
+  override inline def test(value: Int): Boolean = value > 0
+
+  override inline def message: String = "Should be strictly positive"
+
+```
+:::
+::::
+
+::: {data-id="creator" .faded}
+Created in Scala 3 []{.devicon-scala-plain .colored} by Raphaël Fromentin
+:::
+
+::: {data-id="binding" .faded}
+It enables binding constraints to a specific type
+:::
+
+## [What is Iron?]{.faded} {data-id="what-title"}
+
+:::: {data-id="constraint" style="font-size: 150%"}
+Composable [type constraint]{style="font-size: 200%;"} library
+
+::: {style="font-size: var(--r-main-font-size);"}
+
+```scala{data-line-numbers="11|12--13"}
+final class Positive
+
+import io.github.iltotore.iron.*
+
+given Constraint[Int, Positive] with
+
+  override inline def test(value: Int): Boolean = value > 0
+
+  override inline def message: String = "Should be strictly positive"
+
+val x: Int :| Positive = 1
+//Compile-time error: Should be strictly positive
+val y: Int :| Positive = -1 
+```
+:::
+::::
+
+::: {data-id="creator" .faded}
+Created in Scala 3 []{.devicon-scala-plain .colored} by Raphaël Fromentin
+:::
+
+::: {data-id="binding" .faded}
+It enables binding constraints to a specific type
+:::
+
+## [What is Iron?]{.faded} {data-id="what-title"}
+
+:::: {data-id="constraint" style="font-size: 150%"}
+[Composable type constraint]{style="font-size: 200%;"} library
+
+::: {style="font-size: var(--r-main-font-size);"}
+
+```scala{data-line-numbers="9-|10-13"}
+final class Positive
+final class Less[V]
+
+// ...
+
+val x: Int :| Positive = 1
+val y: Int :| Positive = -1
+
+val foo: Int :| Positive :| Less[42] = 1
+//Compile-time error: Should be strictly positive
+val bar: Int :| Positive :| Less[42] = -1 
+//Compile-time error: Should be less than 42
+val baz: Int :| Positive :| Less[42] = 100
+
+```
+:::
+::::
+
+::: {data-id="creator" .faded}
+Created in Scala 3 []{.devicon-scala-plain .colored} by Raphaël Fromentin
+:::
+
+::: {data-id="binding" .faded}
+It enables binding constraints to a specific type
+:::
 
 ## Composition
 
@@ -311,4 +412,4 @@ Scalacheck
 
 # Thank you!
 
-![Slides available on https://iron.rlemaitre.com](images/slides-url.svg){.r-stretch}
+![Slides available at https://iron.rlemaitre.com](images/slides-url.svg){.r-stretch}
