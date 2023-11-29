@@ -302,6 +302,7 @@ object NationalCheckDigits:
     Either.cond(input.length == 2, NationalCheckDigits(input), 
       FormatError("Notional check digits must be 2 characters"))
 ```
+## What about opaque types?
 
 ##
 ```scala {data-id="opaque-types-code" data-line-numbers=""}
@@ -533,12 +534,12 @@ def createIBAN(  countryCode: String,
   nationalCheckDigit: String
 ): Either[String, User] =
   for
-    ctr <- countryCode.refineEither[Alphanumeric & Length[Equals[ 2]]]
-    chk <- countryCode.refineEither[Alphanumeric & Length[Equals[ 2]]]
-    ban <- countryCode.refineEither[Alphanumeric & Length[Equals[ 5]]]
-    bra <- countryCode.refineEither[Alphanumeric & Length[Equals[ 5]]]
-    acc <- countryCode.refineEither[Alphanumeric & Length[Equals[11]]]
-    nck <- countryCode.refineEither[Alphanumeric & Length[Equals[ 2]]]
+    ctr <- countryCode.refineEither[Alphanumeric & Length[Equals[2]]]
+    chk <- checkDigits.refineEither[Alphanumeric & Length[Equals[2]]]
+    ban <- bankCode.refineEither[Alphanumeric & Length[Equals[5]]]
+    bra <- branchCode.refineEither[Alphanumeric & Length[Equals[5]]]
+    acc <- accountNumber.refineEither[Alphanumeric & Length[Equals[11]]]
+    nck <- nationalCheckDigit.refineEither[Alphanumeric & Length[Equals[2]]]
   yield IBAN(ctr, chk, ban, bra, acc, nck)
 ```
 
