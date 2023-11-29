@@ -113,30 +113,6 @@ alt="Raphaël Lemaitre" />
 </section>
 <section id="section-4" class="slide level2" data-auto-animate="">
 <h2 data-auto-animate=""></h2>
-<p>Until you find something like this</p>
-<pre data-id="code"><code class="scala" data-line-numbers="">val shuffled = IBAN(
-  "0500013M026",
-  "FR",
-  "06",
-  "14",
-  "20041",
-  "01005"
-)</code></pre>
-</section>
-<section id="section-5" class="slide level2" data-auto-animate="">
-<h2 data-auto-animate=""></h2>
-<p>So, you try this</p>
-<pre data-id="code"><code class="scala" data-line-numbers="">val wtf = IBAN(
-  "🇫🇷",
-  "✅",
-  "🏦",
-  "🌳",
-  "🧾",
-  "🤡"
-)</code></pre>
-</section>
-<section id="section-6" class="slide level2" data-auto-animate="">
-<h2 data-auto-animate=""></h2>
 <p>So, you try this</p>
 <pre data-id="code"><code class="scala" data-line-numbers="">val wtf = IBAN(
   "🇫🇷",
@@ -155,7 +131,7 @@ alt="Raphaël Lemaitre" />
 <section id="maybe-with-type-aliases" class="slide level2">
 <h2>Maybe with Type aliases?</h2>
 </section>
-<section id="section-7" class="slide level2">
+<section id="section-5" class="slide level2">
 <h2></h2>
 <pre data-id="code"><code class="scala" data-line-numbers="">type CountryCode = String
 type CheckDigits = String
@@ -187,7 +163,7 @@ case class IBAN(
 <section id="so-maybe-with-value-classes" class="slide level2">
 <h2>So, maybe with value classes?</h2>
 </section>
-<section id="section-8" class="slide level2">
+<section id="section-6" class="slide level2">
 <h2></h2>
 <pre data-id="code"><code class="scala" data-line-numbers="">case class CountryCode(value: String) extends AnyVal
 
@@ -201,7 +177,7 @@ case class AccountNumber(value: String) extends AnyVal
 
 case class NationalCheckDigit(value: String) extends AnyVal</code></pre>
 </section>
-<section id="section-9" class="slide level2" data-auto-animate="">
+<section id="section-7" class="slide level2" data-auto-animate="">
 <h2 data-auto-animate=""></h2>
 <p>This looks good</p>
 <pre data-id="code"><code class="scala" data-line-numbers="">val iban = IBAN(
@@ -213,7 +189,7 @@ case class NationalCheckDigit(value: String) extends AnyVal</code></pre>
   NationalCheckDigit("06")
 )</code></pre>
 </section>
-<section id="section-10" class="slide level2" data-auto-animate="">
+<section id="section-8" class="slide level2" data-auto-animate="">
 <h2 data-auto-animate=""></h2>
 <p>And this cannot compile anymore</p>
 <pre data-id="code"><code class="scala" data-line-numbers="">val shuffled = IBAN(
@@ -225,7 +201,7 @@ case class NationalCheckDigit(value: String) extends AnyVal</code></pre>
   BranchCode("01005")
 )</code></pre>
 </section>
-<section id="section-11" class="slide level2" data-auto-animate="">
+<section id="section-9" class="slide level2" data-auto-animate="">
 <h2 data-auto-animate=""></h2>
 <p>But this one still compiles</p>
 <pre data-id="code"><code class="scala" data-line-numbers="">val wtf = IBAN(
@@ -240,7 +216,7 @@ case class NationalCheckDigit(value: String) extends AnyVal</code></pre>
 <section id="lets-add-validation" class="slide level2">
 <h2>Let’s add validation</h2>
 </section>
-<section id="section-12" class="slide level2">
+<section id="section-10" class="slide level2">
 <h2></h2>
 <pre ><code class="scala">case class CountryCode(value: String) extends AnyVal:
   require(value.length == 2, "Country code must be 2 characters")
@@ -263,12 +239,12 @@ case class NationalCheckDigit(value: String) extends AnyVal:
 <section id="lets-validate-without-crashing" class="slide level2">
 <h2>Let’s validate without crashing</h2>
 </section>
-<section id="section-13" class="slide level2">
+<section id="section-11" class="slide level2">
 <h2></h2>
 <pre ><code class="scala">case class FormatError(reason: String) 
    extends Exception(reason), NoStackTrace</code></pre>
 </section>
-<section id="section-14" class="slide level2">
+<section id="section-12" class="slide level2">
 <h2></h2>
 <pre data-id="either-code"><code class="scala" data-line-numbers="">case class CountryCode(value: String) extends AnyVal
 object CountryCode:
@@ -288,7 +264,7 @@ object BankCode:
     Either.cond(input.length == 5, BankCode(input),
       FormatError("Bank code must be 5 characters"))</code></pre>
 </section>
-<section id="section-15" class="slide level2">
+<section id="section-13" class="slide level2">
 <h2></h2>
 <pre data-id="either-code"><code class="scala" data-line-numbers="3,9,15|4-5,10-11,16-17">case class CountryCode(value: String) extends AnyVal
 object CountryCode:
@@ -308,7 +284,7 @@ object BankCode:
     Either.cond(input.length == 5, BankCode(input),
       FormatError("Bank code must be 5 characters"))</code></pre>
 </section>
-<section id="section-16" class="slide level2">
+<section id="section-14" class="slide level2">
 <h2></h2>
 <pre data-id="either-code"><code class="scala" data-line-numbers="">case class BranchCode(value: String) extends AnyVal
 object BranchCode:
@@ -328,7 +304,7 @@ object NationalCheckDigits:
     Either.cond(input.length == 2, NationalCheckDigits(input), 
       FormatError("Notional check digits must be 2 characters"))</code></pre>
 </section>
-<section id="section-17" class="slide level2">
+<section id="section-15" class="slide level2">
 <h2></h2>
 <pre data-id="either-code"><code class="scala" data-line-numbers="3,9,15|4-5,10-11,16-17">case class BranchCode(value: String) extends AnyVal
 object BranchCode:
@@ -348,7 +324,10 @@ object NationalCheckDigits:
     Either.cond(input.length == 2, NationalCheckDigits(input), 
       FormatError("Notional check digits must be 2 characters"))</code></pre>
 </section>
-<section id="section-18" class="slide level2">
+<section id="what-about-opaque-types" class="slide level2">
+<h2>What about opaque types?</h2>
+</section>
+<section id="section-16" class="slide level2">
 <h2></h2>
 <pre data-id="opaque-types-code"><code class="scala" data-line-numbers="">opaque type BranchCode &lt;: String = String
 object BranchCode:
@@ -449,7 +428,7 @@ class="title-slide slide level1">
 </section>
 
 <section>
-<section id="section-19" class="title-slide slide level1">
+<section id="section-17" class="title-slide slide level1">
 <h1></h1>
 <p><img data-src="images/iron-logo.png" /></p>
 </section>
@@ -623,12 +602,12 @@ class="slide level2" data-auto-animate="">
   nationalCheckDigit: String
 ): Either[String, User] =
   for
-    ctr &lt;- countryCode.refineEither[Alphanumeric & Length[Equals[ 2]]]
-    chk &lt;- countryCode.refineEither[Alphanumeric & Length[Equals[ 2]]]
-    ban &lt;- countryCode.refineEither[Alphanumeric & Length[Equals[ 5]]]
-    bra &lt;- countryCode.refineEither[Alphanumeric & Length[Equals[ 5]]]
-    acc &lt;- countryCode.refineEither[Alphanumeric & Length[Equals[11]]]
-    nck &lt;- countryCode.refineEither[Alphanumeric & Length[Equals[ 2]]]
+    ctr &lt;- countryCode.refineEither[Alphanumeric & Length[Equals[2]]]
+    chk &lt;- checkDigits.refineEither[Alphanumeric & Length[Equals[2]]]
+    ban &lt;- bankCode.refineEither[Alphanumeric & Length[Equals[5]]]
+    bra &lt;- branchCode.refineEither[Alphanumeric & Length[Equals[5]]]
+    acc &lt;- accountNumber.refineEither[Alphanumeric & Length[Equals[11]]]
+    nck &lt;- nationalCheckDigit.refineEither[Alphanumeric & Length[Equals[2]]]
   yield IBAN(ctr, chk, ban, bra, acc, nck)</code></pre>
 <aside class="notes">
 <p>Functional</p>
